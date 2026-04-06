@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osilade Oluwapelumi Israel &mdash; Operations &amp; Analytics</title>
+<meta name="description" content="Operations & Analytics Professional. SQL, Power BI, Python, Insurance. Leadway Assurance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500&family=Outfit:wght@200;300;400;500;600&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --ink:#0d0d0d;--ink-80:rgba(13,13,13,.8);--ink-40:rgba(13,13,13,.4);--ink-15:rgba(13,13,13,.12);
+  --cream:#f5f0e8;--cream-dk:#ede6d6;--white:#fdfaf5;
+  --gold:#c9a84c;--gold-lt:#e2c97e;--gold-dim:rgba(201,168,76,.1);--gold-mid:rgba(201,168,76,.3);
+  --charcoal:#1a1a1a;--deep:#0a0a0f;--muted:#6b6560;--red:#8b1a1a;
+  --ff-d:'Cormorant Garamond',Georgia,serif;
+  --ff-b:'Outfit',system-ui,sans-serif;
+  --ff-m:'DM Mono',monospace;
+  --max:1260px;--r:3px;
+  --ease:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--ff-b);background:var(--cream);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;cursor:none}
+a{color:inherit;text-decoration:none}
+.cursor{position:fixed;width:10px;height:10px;background:var(--gold);border-radius:50%;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .3s,height .3s,background .3s;mix-blend-mode:multiply}
+.cursor-ring{position:fixed;width:36px;height:36px;border:1px solid var(--gold);border-radius:50%;pointer-events:none;z-index:9998;transform:translate(-50%,-50%);transition:width .4s,height .4s,opacity .3s;opacity:.5}
+.cursor.h{width:6px;height:6px;background:var(--ink)}
+.cursor-ring.h{width:52px;height:52px;opacity:.25}
+@media(hover:none){.cursor,.cursor-ring{display:none}body{cursor:auto}}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 60px}
+.eyebrow{font-family:var(--ff-m);font-size:.67rem;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:12px}
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:500;transition:all .4s var(--ease)}
+#nav.s .ni{background:rgba(245,240,232,.96);backdrop-filter:blur(20px);border-bottom:1px solid var(--ink-15);box-shadow:0 1px 40px rgba(0,0,0,.06)}
+.ni{max-width:var(--max);margin:0 auto;padding:0 60px;height:72px;display:flex;align-items:center;justify-content:space-between;transition:all .4s var(--ease)}
+.nav-logo{font-family:var(--ff-d);font-size:1.3rem;font-weight:600;color:rgba(255,255,255,.9);letter-spacing:.02em;transition:color .3s}
+#nav.s .nav-logo{color:var(--ink)}
+.nav-logo em{color:var(--gold);font-style:normal}
+.nav-links{display:flex;gap:36px;list-style:none;align-items:center}
+.nav-links a{font-size:.75rem;font-weight:400;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.45);transition:color .3s;position:relative}
+.nav-links a::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a:hover::after{width:100%}
+#nav.s .nav-links a{color:var(--ink-40)}
+#nav.s .nav-links a:hover{color:var(--gold)}
+.nav-cta{font-family:var(--ff-m);font-size:.65rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold) !important;border:1px solid var(--gold-mid) !important;padding:7px 18px;border-radius:2px;transition:all .3s var(--ease) !important}
+.nav-cta::after{display:none !important}
+.nav-cta:hover{background:var(--gold) !important;color:var(--ink) !important}
+/* HERO */
+#hero{min-height:100vh;background:var(--deep);display:flex;flex-direction:column;justify-content:flex-end;position:relative;overflow:hidden;padding-bottom:80px}
+.h-mesh{position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 85% 20%,rgba(201,168,76,.08) 0,transparent 60%),radial-gradient(ellipse 40% 60% at 10% 90%,rgba(139,26,26,.06) 0,transparent 50%);z-index:0}
+.h-noise{position:absolute;inset:0;z-index:1;opacity:.35;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)' opacity='.08'/%3E%3C/svg%3E")}
+.h-bgnum{position:absolute;right:-2%;bottom:-6%;font-family:var(--ff-d);font-size:clamp(260px,30vw,500px);font-weight:700;color:transparent;-webkit-text-stroke:1px rgba(201,168,76,.05);line-height:1;user-select:none;pointer-events:none;z-index:0;letter-spacing:-.05em}
+.h-vtext{position:absolute;right:60px;top:50%;transform:translateY(-50%) rotate(90deg);font-family:var(--ff-m);font-size:.6rem;letter-spacing:.28em;text-transform:uppercase;color:rgba(201,168,76,.28);white-space:nowrap;z-index:2}
+.h-con{position:relative;z-index:3;max-width:var(--max);margin:0 auto;padding:0 60px;width:100%}
+.h-meta{display:flex;align-items:center;gap:18px;margin-bottom:28px;animation:fu .9s var(--ease) .2s both}
+.h-tag{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);background:var(--gold-dim);border:1px solid var(--gold-mid);padding:5px 13px;border-radius:2px}
+.h-line{width:50px;height:1px;background:linear-gradient(to right,var(--gold),transparent)}
+.h-yr{font-family:var(--ff-m);font-size:.6rem;color:rgba(255,255,255,.18);letter-spacing:.12em}
+.h-name{font-family:var(--ff-d);font-size:clamp(3.4rem,8.5vw,8rem);font-weight:300;line-height:.92;color:var(--white);letter-spacing:-.03em;margin-bottom:28px;animation:fu .9s var(--ease) .35s both}
+.h-name em{font-style:italic;color:var(--gold);font-weight:300}
+.h-name .sn{display:block;font-weight:600;font-style:normal;color:var(--white)}
+.h-bot{display:grid;grid-template-columns:1fr auto;align-items:flex-end;gap:60px;animation:fu .9s var(--ease) .5s both}
+.h-desc p{font-size:1rem;color:rgba(255,255,255,.42);line-height:1.85;font-weight:300;margin-bottom:28px;max-width:500px}
+.h-desc p strong{color:rgba(255,255,255,.72);font-weight:400}
+.h-cta{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-m);font-size:.66rem;letter-spacing:.14em;text-transform:uppercase;padding:13px 26px;border-radius:2px;cursor:none;transition:all .35s var(--ease);border:1px solid transparent}
+.btn-g{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.btn-g:hover{background:var(--gold-lt);transform:translateY(-2px);box-shadow:0 12px 32px rgba(201,168,76,.3)}
+.btn-gh{background:transparent;color:rgba(255,255,255,.5);border-color:rgba(255,255,255,.14)}
+.btn-gh:hover{border-color:var(--gold-mid);color:var(--gold);transform:translateY(-2px)}
+.h-stats{display:flex;flex-direction:column;gap:0;align-items:flex-end}
+.h-si{text-align:right;padding:12px 0;border-bottom:1px solid rgba(255,255,255,.05)}
+.h-si:last-child{border-bottom:none}
+.h-sn{font-family:var(--ff-d);font-size:1.75rem;font-weight:600;color:var(--gold);display:block;line-height:1}
+.h-sl{font-size:.62rem;color:rgba(255,255,255,.22);letter-spacing:.1em;text-transform:uppercase;font-family:var(--ff-m)}
+.scroll-hint{position:absolute;bottom:28px;left:50%;transform:translateX(-50%);z-index:3;display:flex;flex-direction:column;align-items:center;gap:7px;animation:fu 1s var(--ease) 1s both}
+.scroll-hint span{font-family:var(--ff-m);font-size:.56rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+.s-line{width:1px;height:36px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.3}50%{opacity:.8}}
+/* TICKER */
+.tkr-wrap{background:var(--gold);overflow:hidden;padding:13px 0}
+.tkr-track{display:flex;animation:tkr 28s linear infinite;white-space:nowrap}
+.tkr-track:hover{animation-play-state:paused}
+.tkr-item{display:inline-flex;align-items:center;gap:28px;padding:0 28px;font-family:var(--ff-m);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--ink);font-weight:500}
+.tkr-item::after{content:'\2736';font-size:.45rem;opacity:.45}
+@keyframes tkr{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+/* SECTIONS */
+section{padding:100px 0}
+.s-num{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.2em;color:var(--ink-40);text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.s-num::before{content:'';display:inline-block;width:22px;height:1px;background:var(--gold)}
+/* ABOUT */
+#about{background:var(--cream)}
+.ab-g{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.ab-h{font-family:var(--ff-d);font-size:clamp(2.3rem,4.5vw,3.8rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:28px}
+.ab-h em{font-style:italic;color:var(--gold)}
+.ab-p{font-size:.97rem;line-height:1.9;color:var(--muted);margin-bottom:18px;font-weight:300}
+.ab-p strong{color:var(--ink);font-weight:500}
+.bento{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--ink-15);border:1px solid var(--ink-15);border-radius:4px;overflow:hidden}
+.bc{background:var(--white);padding:18px;transition:all .3s var(--ease);cursor:none}
+.bc:hover{background:var(--ink)}
+.bc:hover .bc-n{color:var(--gold)}
+.bc:hover .bc-c{color:rgba(255,255,255,.28)}
+.bc.w{grid-column:span 2}
+.bc-n{font-family:var(--ff-d);font-size:1rem;font-weight:500;color:var(--ink);margin-bottom:2px;transition:color .3s}
+.bc-c{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-40);transition:color .3s}
+/* EXPERIENCE */
+#experience{background:var(--ink)}
+#experience .s-num{color:rgba(255,255,255,.22)}
+#experience .s-num::before{background:var(--gold)}
+.ex-h{font-family:var(--ff-d);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:400;color:var(--white);letter-spacing:-.02em;line-height:1.1;margin-bottom:56px}
+.ex-h em{color:var(--gold);font-style:italic}
+.ex-g{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:rgba(255,255,255,.05)}
+.ex-c{background:var(--charcoal);padding:36px;transition:all .4s var(--ease);position:relative;overflow:hidden;cursor:none}
+.ex-c::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(to right,var(--gold),transparent);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--ease)}
+.ex-c:hover::before{transform:scaleX(1)}
+.ex-c:hover{background:#1e1e1e}
+.ex-p{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.15em;color:var(--gold);margin-bottom:14px;display:flex;align-items:center;gap:8px}
+.ex-p::before{content:'';width:14px;height:1px;background:var(--gold);opacity:.5}
+.ex-t{font-family:var(--ff-d);font-size:1.5rem;font-weight:500;color:var(--white);line-height:1.2;margin-bottom:5px}
+.ex-o{font-size:.78rem;color:rgba(255,255,255,.3);margin-bottom:20px;font-weight:300}
+.ex-ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+.ex-ul li{font-size:.83rem;color:rgba(255,255,255,.4);padding-left:14px;position:relative;line-height:1.6;font-weight:300}
+.ex-ul li::before{content:'';position:absolute;left:0;top:10px;width:5px;height:1px;background:var(--gold);opacity:.5}
+/* PROJECTS */
+#projects{background:var(--cream-dk)}
+.pj-h{font-family:var(--ff-d);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--ink);margin-bottom:48px}
+.pj-h em{font-style:italic;color:var(--gold)}
+.pj-card{display:grid;grid-template-columns:1fr 1.25fr;background:var(--white);border:1px solid var(--ink-15);border-radius:4px;overflow:hidden;transition:all .4s var(--ease);cursor:none;min-height:420px}
+.pj-card:hover{box-shadow:0 24px 80px rgba(0,0,0,.1);transform:translateY(-4px)}
+.pj-l{background:var(--ink);padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between;position:relative;overflow:hidden}
+.pj-l::after{content:'01';position:absolute;bottom:-20px;right:-8px;font-family:var(--ff-d);font-size:120px;font-weight:700;color:rgba(201,168,76,.05);line-height:1;pointer-events:none}
+.pj-badge{display:inline-flex;align-items:center;gap:8px;font-family:var(--ff-m);font-size:.6rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(255,255,255,.28);border:1px solid rgba(255,255,255,.08);padding:5px 12px;border-radius:2px;margin-bottom:auto}
+.pj-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:p 2s ease-in-out infinite}
+@keyframes p{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.pj-ta{margin-top:36px}
+.pj-ta h3{font-family:var(--ff-d);font-size:clamp(1.5rem,2.5vw,2.1rem);font-weight:400;color:var(--white);line-height:1.2;margin-bottom:12px}
+.pj-ta h3 em{color:var(--gold);font-style:italic}
+.pj-skills{display:flex;flex-wrap:wrap;gap:7px}
+.pj-sk{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.3);background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);padding:4px 9px;border-radius:2px}
+.pj-r{padding:48px 44px;display:flex;flex-direction:column;justify-content:space-between}
+.pj-r h4{font-family:var(--ff-d);font-size:.97rem;font-weight:600;color:var(--ink);margin-bottom:14px;letter-spacing:.01em}
+.pj-r p{font-size:.88rem;color:var(--muted);line-height:1.85;font-weight:300;margin-bottom:18px}
+.pj-info{background:var(--cream);border:1px solid var(--ink-15);border-left:3px solid var(--gold);padding:18px 20px;border-radius:0 3px 3px 0;margin-top:8px}
+.pj-info p{font-size:.82rem;color:var(--muted);line-height:1.7;font-style:italic;margin:0}
+.pj-info strong{color:var(--ink);font-style:normal;font-weight:500}
+.pj-ft{display:flex;align-items:center;justify-content:space-between;padding-top:24px;border-top:1px solid var(--ink-15);margin-top:24px}
+.pj-mt{display:flex;gap:7px;flex-wrap:wrap}
+.pj-m{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.1em;color:var(--ink-40);background:var(--cream);padding:4px 9px;border-radius:2px;border:1px solid var(--ink-15)}
+.pj-st{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);display:flex;align-items:center;gap:7px}
+/* EDUCATION */
+#education{background:var(--cream)}
+.edu-g{display:grid;grid-template-columns:1.1fr 1fr;gap:72px;align-items:start;margin-top:0}
+.edu-it{padding:26px 0;border-bottom:1px solid var(--ink-15);transition:all .3s var(--ease);cursor:none}
+.edu-it:hover{padding-left:8px}
+.edu-it:first-child{padding-top:0}
+.edu-it:last-child{border-bottom:none}
+.edu-yr{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.14em;color:var(--gold);margin-bottom:5px}
+.edu-deg{font-family:var(--ff-d);font-size:1.15rem;font-weight:500;color:var(--ink);margin-bottom:3px;line-height:1.3}
+.edu-inst{font-size:.8rem;color:var(--muted);font-weight:300}
+.cert-h{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.18em;text-transform:uppercase;color:var(--ink-40);margin-bottom:24px}
+.cert-stk{display:flex;flex-direction:column;gap:0;border:1px solid var(--ink-15);border-radius:3px;overflow:hidden}
+.cert-row{display:flex;align-items:center;gap:14px;padding:15px 18px;border-bottom:1px solid var(--ink-15);background:var(--white);transition:all .25s var(--ease);cursor:none}
+.cert-row:last-child{border-bottom:none}
+.cert-row:hover{background:var(--ink)}
+.cert-row:hover .cert-n{color:var(--gold)}
+.cert-row:hover .cert-p{color:rgba(255,255,255,.28)}
+.cert-num{font-family:var(--ff-m);font-size:.58rem;color:var(--gold);width:22px;flex-shrink:0}
+.cert-n{font-size:.83rem;font-weight:500;color:var(--ink);transition:color .25s;line-height:1.35}
+.cert-p{font-size:.7rem;color:var(--muted);transition:color .25s;font-family:var(--ff-m)}
+/* CONTACT */
+#contact{background:var(--ink);position:relative;overflow:hidden}
+#contact .s-num{color:rgba(255,255,255,.2)}
+#contact .s-num::before{background:var(--gold)}
+#contact::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 60% at 80% 30%,rgba(201,168,76,.06) 0,transparent 60%);pointer-events:none}
+.ct-g{display:grid;grid-template-columns:1.2fr 1fr;gap:90px;align-items:start;position:relative;z-index:2}
+.ct-h{font-family:var(--ff-d);font-size:clamp(2.3rem,5vw,4.2rem);font-weight:300;color:var(--white);line-height:1.1;letter-spacing:-.02em;margin-bottom:18px}
+.ct-h em{font-style:italic;color:var(--gold)}
+.ct-p{font-size:.95rem;color:rgba(255,255,255,.38);line-height:1.8;font-weight:300;margin-bottom:36px;max-width:420px}
+.ct-items{display:flex;flex-direction:column;gap:2px;margin-bottom:36px}
+.ct-it{display:flex;align-items:center;gap:18px;padding:16px 18px;background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.05);border-radius:2px;transition:all .3s var(--ease);cursor:none}
+.ct-it:hover{background:rgba(201,168,76,.06);border-color:var(--gold-mid);transform:translateX(6px)}
+.ct-it:hover .ct-v{color:var(--gold)}
+.ct-ic{width:34px;height:34px;background:var(--gold-dim);border:1px solid var(--gold-mid);border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:.82rem;flex-shrink:0;color:var(--gold)}
+.ct-lb{font-family:var(--ff-m);font-size:.56rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.22);display:block}
+.ct-v{font-size:.86rem;color:rgba(255,255,255,.65);font-weight:400;transition:color .3s}
+.mono-d{width:100%;max-width:260px;aspect-ratio:1;background:var(--gold-dim);border:1px solid var(--gold-mid);border-radius:3px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;position:relative;overflow:hidden;margin-bottom:24px}
+.mono-d::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at center,rgba(201,168,76,.1),transparent 70%)}
+.mono-lt{font-family:var(--ff-d);font-size:3.8rem;font-weight:600;color:var(--gold);letter-spacing:.08em;position:relative;z-index:1}
+.mono-nm{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(255,255,255,.28);position:relative;z-index:1}
+.mono-r{font-family:var(--ff-m);font-size:.53rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(201,168,76,.45);position:relative;z-index:1}
+/* SHADOW */
+#shadow{background:var(--deep);padding:100px 0;border-top:1px solid rgba(201,168,76,.12);position:relative;overflow:hidden}
+#shadow::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 50% 60% at 15% 50%,rgba(201,168,76,.05) 0,transparent 60%),radial-gradient(ellipse 40% 40% at 85% 20%,rgba(139,26,26,.05) 0,transparent 50%)}
+.sh-g{display:grid;grid-template-columns:1fr 1.2fr;gap:72px;align-items:center;position:relative;z-index:2}
+.sh-h{font-family:var(--ff-d);font-size:clamp(2rem,4vw,3.2rem);font-weight:400;color:var(--white);line-height:1.15;letter-spacing:-.02em;margin-bottom:18px}
+.sh-h em{color:var(--gold);font-style:italic}
+.sh-p{font-size:.92rem;color:rgba(255,255,255,.38);line-height:1.85;font-weight:300;margin-bottom:28px;max-width:420px}
+.pb{margin-bottom:22px}
+.pb-lbl{display:flex;justify-content:space-between;margin-bottom:7px}
+.pb-lbl span{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.28)}
+.pb-lbl strong{color:var(--gold);font-weight:400}
+.pb-bar{height:2px;background:rgba(255,255,255,.06);border-radius:1px;overflow:hidden}
+.pb-fill{height:100%;background:linear-gradient(to right,var(--gold),var(--gold-lt));border-radius:1px;transition:width 1.5s var(--ease);width:0}
+.sh-strip{background:rgba(201,168,76,.06);border:1px solid rgba(201,168,76,.14);border-radius:3px;padding:14px 18px;display:flex;align-items:flex-start;gap:12px;margin-top:4px}
+.sh-strip span{font-family:var(--ff-m);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--gold);display:block;margin-bottom:3px}
+.sh-strip p{font-size:.78rem;color:rgba(255,255,255,.28);margin:0;font-weight:300}
+.sh-card{background:rgba(255,255,255,.03);border:1px solid rgba(201,168,76,.13);border-radius:4px;padding:36px;position:relative;overflow:hidden}
+.sh-card::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent)}
+.sh-ct{font-family:var(--ff-d);font-size:1.2rem;font-weight:500;color:rgba(255,255,255,.55);margin-bottom:5px}
+.sh-cs{font-family:var(--ff-m);font-size:.6rem;letter-spacing:.14em;color:var(--gold);text-transform:uppercase;margin-bottom:24px}
+.sh-m{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;background:rgba(255,255,255,.04);border-radius:3px;overflow:hidden;margin-bottom:24px}
+.sh-mi{background:rgba(255,255,255,.02);padding:14px;text-align:center}
+.sh-mn{font-family:var(--ff-d);font-size:1.5rem;font-weight:600;color:rgba(201,168,76,.45);display:block;line-height:1;margin-bottom:3px}
+.sh-ml{font-family:var(--ff-m);font-size:.56rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.18)}
+/* FOOTER */
+footer{background:var(--deep);padding:30px 0;border-top:1px solid rgba(255,255,255,.05)}
+.ft-in{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:14px}
+.ft-logo{font-family:var(--ff-d);font-size:1.05rem;color:rgba(255,255,255,.28)}
+.ft-logo em{color:var(--gold);font-style:normal}
+footer p{font-family:var(--ff-m);font-size:.58rem;letter-spacing:.12em;color:rgba(255,255,255,.14);text-transform:uppercase}
+/* REVEAL */
+.rv{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rv.in{opacity:1;transform:translateY(0)}
+.rvl{opacity:0;transform:translateX(-28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rvl.in{opacity:1;transform:translateX(0)}
+.rvr{opacity:0;transform:translateX(28px);transition:opacity .8s var(--ease),transform .8s var(--ease)}
+.rvr.in{opacity:1;transform:translateX(0)}
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}
+@keyframes fu{from{opacity:0;transform:translateY(24px)}to{opacity:1;transform:translateY(0)}}
+@media(max-width:1024px){
+  .wrap,.ni,.h-con{padding-left:36px;padding-right:36px}
+  .ab-g,.ct-g,.sh-g,.edu-g{grid-template-columns:1fr;gap:44px}
+  .ex-g,.pj-card{grid-template-columns:1fr}
+  .h-bot{grid-template-columns:1fr;gap:36px}
+  .h-stats{flex-direction:row;flex-wrap:wrap;align-items:flex-start;justify-content:flex-start;gap:18px}
+  .h-si{text-align:left;border-right:1px solid rgba(255,255,255,.07);border-bottom:none;padding:0 22px 0 0}
+  .h-si:last-child{border-right:none}
+}
+@media(max-width:768px){
+  section{padding:72px 0}
+  .wrap,.ni,.h-con{padding-left:22px;padding-right:22px}
+  .nav-links{display:none}
+  .h-name{font-size:clamp(3rem,13vw,5rem)}
+  .bento{grid-template-columns:1fr}
+  .bc.w{grid-column:span 1}
+}
+@media(max-width:480px){
+  .h-cta,.ct-btns{flex-direction:column}
+  .btn{justify-content:center}
+}
+</style></head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cring"></div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="ni">
+    <a href="#hero" class="nav-logo">O<em>.</em>Israel</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#shadow">Research</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="h-mesh"></div>
+  <div class="h-noise"></div>
+  <div class="h-bgnum">OOI</div>
+  <div class="h-vtext">Operations &middot; Analytics &middot; Insurance &middot; 2025</div>
+  <div class="h-con">
+    <div class="h-meta">
+      <span class="h-tag">Open to Opportunities</span>
+      <span class="h-line"></span>
+      <span class="h-yr">Lagos, Nigeria &mdash; 2025</span>
+    </div>
+    <h1 class="h-name">
+      Osilade<br><em>Oluwapelumi</em><br><span class="sn">Israel</span>
+    </h1>
+    <div class="h-bot">
+      <div class="h-desc">
+        <p><strong>Operations &amp; Analytics Professional</strong> at Leadway Assurance. I combine a Sociology lens with analytical tools to find what numbers alone can&rsquo;t tell you &mdash; bridging data, risk, and human behaviour.</p>
+        <div class="h-cta">
+          <a href="#projects" class="btn btn-g">View My Work</a>
+          <a href="#contact" class="btn btn-gh">Get in Touch</a>
+        </div>
+      </div>
+      <div class="h-stats">
+        <div class="h-si"><span class="h-sn">1+</span><span class="h-sl">Years Experience</span></div>
+        <div class="h-si"><span class="h-sn">5</span><span class="h-sl">Certifications</span></div>
+        <div class="h-si"><span class="h-sn">3</span><span class="h-sl">Industries</span></div>
+        <div class="h-si"><span class="h-sn">2:1</span><span class="h-sl">BSc Sociology</span></div>
+      </div>
+    </div>
+  </div>
+  <div class="scroll-hint"><span>Scroll</span><div class="s-line"></div></div>
+</section>
+
+<!-- TICKER -->
+<div class="tkr-wrap" aria-hidden="true">
+  <div class="tkr-track">
+    <span class="tkr-item">SQL</span><span class="tkr-item">Power BI</span><span class="tkr-item">Python</span><span class="tkr-item">Excel</span><span class="tkr-item">DAX</span><span class="tkr-item">Underwriting</span><span class="tkr-item">Claims Operations</span><span class="tkr-item">Risk Management</span><span class="tkr-item">KYC &amp; AML</span><span class="tkr-item">NIID</span><span class="tkr-item">Data Visualisation</span><span class="tkr-item">Survey Design</span><span class="tkr-item">Statistical Analysis</span><span class="tkr-item">Power Query</span><span class="tkr-item">ACIIN In Progress</span><span class="tkr-item">SQL</span><span class="tkr-item">Power BI</span><span class="tkr-item">Python</span><span class="tkr-item">Excel</span><span class="tkr-item">DAX</span><span class="tkr-item">Underwriting</span><span class="tkr-item">Claims Operations</span><span class="tkr-item">Risk Management</span><span class="tkr-item">KYC &amp; AML</span><span class="tkr-item">NIID</span><span class="tkr-item">Data Visualisation</span><span class="tkr-item">Survey Design</span><span class="tkr-item">Statistical Analysis</span><span class="tkr-item">Power Query</span><span class="tkr-item">ACIIN In Progress</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="wrap">
+    <div class="ab-g">
+      <div class="rvl">
+        <div class="s-num">01 &mdash; About</div>
+        <h2 class="ab-h">Where Data<br>Meets <em>Humanity</em></h2>
+        <p class="ab-p">I don&rsquo;t just analyse data &mdash; I ask <strong>why</strong> it looks the way it does. My Sociology background trained me to trace behaviour back to systems, structures, and social conditions. That&rsquo;s a rare lens in insurance and analytics.</p>
+        <p class="ab-p">At Leadway Assurance I work at the intersection of underwriting, claims, and operational intelligence &mdash; reviewing KYC documentation, managing policy operations, and building performance reports that drive decisions.</p>
+        <p class="ab-p">Building toward <strong>full ACIIN qualification</strong> &mdash; with data as my differentiator and human insight as my foundation.</p>
+      </div>
+      <div class="rvr">
+        <div class="bento">
+          <div class="bc"><div class="bc-n">SQL</div><div class="bc-c">Data Querying</div></div>
+          <div class="bc"><div class="bc-n">Power BI</div><div class="bc-c">Visualisation</div></div>
+          <div class="bc"><div class="bc-n">Python</div><div class="bc-c">Analysis &amp; Scripting</div></div>
+          <div class="bc"><div class="bc-n">DAX</div><div class="bc-c">Data Modelling</div></div>
+          <div class="bc"><div class="bc-n">Underwriting</div><div class="bc-c">Insurance Operations</div></div>
+          <div class="bc"><div class="bc-n">Claims Ops</div><div class="bc-c">Insurance Operations</div></div>
+          <div class="bc"><div class="bc-n">KYC / AML</div><div class="bc-c">Compliance</div></div>
+          <div class="bc"><div class="bc-n">Risk Mgmt</div><div class="bc-c">Insurance &amp; Analytics</div></div>
+          <div class="bc w"><div class="bc-n">Survey Design &amp; Statistical Analysis</div><div class="bc-c">Research Methodology</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience">
+  <div class="wrap">
+    <div class="s-num">02 &mdash; Experience</div>
+    <h2 class="ex-h">Where I&rsquo;ve<br>Built My <em>Edge</em></h2>
+    <div class="ex-g">
+      <div class="ex-c rv d1">
+        <div class="ex-p">2025 &mdash; 2026</div>
+        <div class="ex-t">Operations Officer</div>
+        <div class="ex-o">Leadway Assurance Company Limited &middot; NYSC</div>
+        <ul class="ex-ul">
+          <li>Reviewed and validated client documents post-KYC for underwriting compliance</li>
+          <li>Assisted in policy operations &mdash; renewals, endorsements, cancellations</li>
+          <li>Tracked claims pipelines and ensured timely resolution</li>
+          <li>Maintained NIID database for motor policy renewals</li>
+          <li>Prepared performance reports for departmental monitoring</li>
+        </ul>
+      </div>
+      <div class="ex-c rv d2">
+        <div class="ex-p">2023 &mdash; Present</div>
+        <div class="ex-t">Founder &amp; Lead Instructor</div>
+        <div class="ex-o">Knight Code &middot; EdTech</div>
+        <ul class="ex-ul">
+          <li>Built Power BI dashboards to track revenue and customer behaviour</li>
+          <li>Designed 9-module curriculum: chess strategy meets tech skills for youth</li>
+          <li>Grew brand through strategic Instagram and YouTube content</li>
+        </ul>
+      </div>
+      <div class="ex-c rv d3">
+        <div class="ex-p">2023 &mdash; 2025</div>
+        <div class="ex-t">Social Media Manager</div>
+        <div class="ex-o">U &amp; U Geriatric Care</div>
+        <ul class="ex-ul">
+          <li>Built and maintained digital brand presence for healthcare provider</li>
+          <li>Analysed performance data and optimised reach and engagement</li>
+        </ul>
+      </div>
+      <div class="ex-c rv d4">
+        <div class="ex-p">2023 &mdash; 2024</div>
+        <div class="ex-t">Social Media Manager</div>
+        <div class="ex-o">Love &amp; Luxury Studio</div>
+        <ul class="ex-ul">
+          <li>Developed multi-platform social strategies for brand awareness</li>
+          <li>Managed content aligned with premium brand identity</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="wrap">
+    <div class="rv">
+      <div class="s-num">03 &mdash; Projects</div>
+      <h2 class="pj-h">Research &amp; <em>Analytics</em> Work</h2>
+    </div>
+    <div class="pj-card rv">
+      <div class="pj-l">
+        <div class="pj-badge"><span class="pj-dot"></span>In Progress</div>
+        <div class="pj-ta">
+          <h3>The Shadow Insurance Economy<br>of <em>Abeokuta South</em></h3>
+          <div class="pj-skills">
+            <span class="pj-sk">Survey Design</span>
+            <span class="pj-sk">Python</span>
+            <span class="pj-sk">Statistical Analysis</span>
+            <span class="pj-sk">Data Storytelling</span>
+            <span class="pj-sk">Power BI</span>
+          </div>
+        </div>
+      </div>
+      <div class="pj-r">
+        <div>
+          <h4>Why 156 traders trust ajo &mdash; but only 11 own formal insurance</h4>
+          <p>A primary research study into informal risk management among market traders in Abeokuta South, Nigeria. Using structured questionnaires across 5 markets, this project maps the trust gap between community savings systems and the formal insurance industry.</p>
+          <p>The study explores the sociology of financial trust, cultural barriers to insurance adoption, and what insurers could do differently to reach Nigeria&rsquo;s informal economy.</p>
+          <div class="pj-info"><p><strong>Currently conducting fieldwork.</strong> Survey instruments designed, markets identified, data collection underway. Full interactive dashboard and statistical findings will be published on completion.</p></div>
+        </div>
+        <div class="pj-ft">
+          <div class="pj-mt">
+            <span class="pj-m">200 Respondents</span>
+            <span class="pj-m">5 Markets</span>
+            <span class="pj-m">Abeokuta South</span>
+            <span class="pj-m">2025</span>
+          </div>
+          <div class="pj-st"><span class="pj-dot"></span>Coming Soon</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:52px">
+      <div class="s-num">04 &mdash; Education</div>
+      <h2 style="font-family:var(--ff-d);font-size:clamp(2.2rem,4vw,3.5rem);font-weight:400;line-height:1.1;letter-spacing:-.02em;color:var(--ink)">Academic <em style="font-style:italic;color:var(--gold)">Foundation</em></h2>
+    </div>
+    <div class="edu-g">
+      <div class="rvl">
+        <div class="edu-it">
+          <div class="edu-yr">In Progress</div>
+          <div class="edu-deg">Associate, Chartered Insurance Institute of Nigeria</div>
+          <div class="edu-inst">CIIN &middot; Foundation / Intermediate Level</div>
+        </div>
+        <div class="edu-it">
+          <div class="edu-yr">2024</div>
+          <div class="edu-deg">B.Sc. (Hons.) Sociology &mdash; Second Class Upper (2:1)</div>
+          <div class="edu-inst">Lagos State University (LASU)</div>
+        </div>
+        <div class="edu-it">
+          <div class="edu-yr">2020</div>
+          <div class="edu-deg">Senior Secondary Certificate Examination</div>
+          <div class="edu-inst">Gbolahan High School</div>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="cert-h">Professional Certifications</div>
+        <div class="cert-stk">
+          <div class="cert-row"><span class="cert-num">01</span><div><div class="cert-n">IBM Data Analyst Professional Certificate</div><div class="cert-p">Coursera</div></div></div>
+          <div class="cert-row"><span class="cert-num">02</span><div><div class="cert-n">Professional Data Analysis Program</div><div class="cert-p">ALX Africa</div></div></div>
+          <div class="cert-row"><span class="cert-num">03</span><div><div class="cert-n">Microsoft Power BI</div><div class="cert-p">Coursera</div></div></div>
+          <div class="cert-row"><span class="cert-num">04</span><div><div class="cert-n">Excel Skills for Business</div><div class="cert-p">Coursera</div></div></div>
+          <div class="cert-row"><span class="cert-num">05</span><div><div class="cert-n">Diploma in Risk Management</div><div class="cert-p">Alison</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="wrap">
+    <div class="ct-g">
+      <div class="rvl">
+        <div class="s-num">05 &mdash; Contact</div>
+        <h2 class="ct-h">Let&rsquo;s<br><em>Connect</em></h2>
+        <p class="ct-p">Whether it&rsquo;s a data analytics opportunity, an insurance conversation, or a collaboration &mdash; I&rsquo;m open to connecting with people who care about the intersection of data, risk, and human behaviour.</p>
+        <div class="ct-items">
+          <a href="mailto:osiladeisrael16@gmail.com" class="ct-it">
+            <div class="ct-ic">&#9993;</div>
+            <div><span class="ct-lb">Email</span><span class="ct-v">osiladeisrael16@gmail.com</span></div>
+          </a>
+          <a href="https://linkedin.com/in/osilade-israel" target="_blank" class="ct-it">
+            <div class="ct-ic" style="font-family:var(--ff-m);font-size:.7rem;font-weight:500">in</div>
+            <div><span class="ct-lb">LinkedIn</span><span class="ct-v">linkedin.com/in/osilade-israel</span></div>
+          </a>
+          <a href="tel:+2348089326400" class="ct-it">
+            <div class="ct-ic">&#9742;</div>
+            <div><span class="ct-lb">Phone</span><span class="ct-v">+234 808 932 6400</span></div>
+          </a>
+        </div>
+        <div class="ct-btns" style="display:flex;gap:12px;flex-wrap:wrap">
+          <a href="mailto:osiladeisrael16@gmail.com" class="btn btn-g">Send Email</a>
+          <a href="https://linkedin.com/in/osilade-israel" target="_blank" class="btn btn-gh">LinkedIn</a>
+        </div>
+      </div>
+      <div class="rvr" style="display:flex;flex-direction:column;align-items:flex-start;padding-top:20px">
+        <div class="mono-d">
+          <div class="mono-lt">OOI</div>
+          <div class="mono-nm">Osilade Oluwapelumi Israel</div>
+          <div class="mono-r">Operations &middot; Analytics &middot; Insurance</div>
+        </div>
+        <p style="font-family:var(--ff-m);font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,.18);line-height:1.8">Based in Lagos, Nigeria<br>Available for Remote &amp; On-site roles</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SHADOW INSURANCE -->
+<section id="shadow">
+  <div class="wrap">
+    <div class="sh-g">
+      <div class="rvl">
+        <span class="eyebrow">Featured Research</span>
+        <h2 class="sh-h">The Shadow Insurance<br><em>Economy</em></h2>
+        <p class="sh-p">An original fieldwork study mapping the trust gap between informal savings groups and formal insurance across five markets in Abeokuta South, Nigeria.</p>
+        <div class="pb">
+          <div class="pb-lbl"><span>Survey Design</span><strong>Complete</strong></div>
+          <div class="pb-bar"><div class="pb-fill" data-w="100"></div></div>
+        </div>
+        <div class="pb">
+          <div class="pb-lbl"><span>Data Collection</span><strong>In Progress</strong></div>
+          <div class="pb-bar"><div class="pb-fill" data-w="45"></div></div>
+        </div>
+        <div class="pb">
+          <div class="pb-lbl"><span>Analysis &amp; Dashboard</span><strong>Pending</strong></div>
+          <div class="pb-bar"><div class="pb-fill" data-w="10"></div></div>
+        </div>
+        <div class="sh-strip">
+          <span class="pj-dot" style="flex-shrink:0;margin-top:4px"></span>
+          <div><span>Publishing Soon</span><p>Full dataset, interactive dashboard &amp; statistical findings on completion</p></div>
+        </div>
+      </div>
+      <div class="rvr">
+        <div class="sh-card">
+          <div class="sh-ct">Shadow Insurance Economy of Abeokuta South</div>
+          <div class="sh-cs">Primary Research &middot; 2025</div>
+          <div class="sh-m">
+            <div class="sh-mi"><span class="sh-mn">200</span><span class="sh-ml">Respondents</span></div>
+            <div class="sh-mi"><span class="sh-mn">5</span><span class="sh-ml">Markets</span></div>
+            <div class="sh-mi"><span class="sh-mn">32</span><span class="sh-ml">Variables</span></div>
+          </div>
+          <p style="font-size:.82rem;color:rgba(255,255,255,.32);line-height:1.75;margin-bottom:20px;font-weight:300">Why do 78% of traders trust ajo with their money while only 5.5% own formal insurance? This study answers that question with primary data, cultural analysis, and policy recommendations for Nigeria&rsquo;s insurance industry.</p>
+          <div style="display:flex;flex-wrap:wrap;gap:7px">
+            <span class="pj-sk" style="color:rgba(201,168,76,.5);border-color:rgba(201,168,76,.14)">Survey Methodology</span>
+            <span class="pj-sk" style="color:rgba(201,168,76,.5);border-color:rgba(201,168,76,.14)">Sociology of Finance</span>
+            <span class="pj-sk" style="color:rgba(201,168,76,.5);border-color:rgba(201,168,76,.14)">Python</span>
+            <span class="pj-sk" style="color:rgba(201,168,76,.5);border-color:rgba(201,168,76,.14)">Statistical Analysis</span>
+            <span class="pj-sk" style="color:rgba(201,168,76,.5);border-color:rgba(201,168,76,.14)">InsurTech Policy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="ft-in">
+      <span class="ft-logo">O<em>.</em>Israel</span>
+      <p>&copy; 2025 Osilade Oluwapelumi Israel &middot; Lagos, Nigeria</p>
+      <p>Operations &middot; Analytics &middot; Insurance</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+/* CURSOR */
+const cur=document.getElementById('cursor'),ring=document.getElementById('cring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function tick(){rx+=(mx-rx)*.11;ry+=(my-ry)*.11;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+document.querySelectorAll('a,button,.bc,.ex-c,.cert-row,.ct-it,.pj-card,.edu-it').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.classList.add('h');ring.classList.add('h')});
+  el.addEventListener('mouseleave',()=>{cur.classList.remove('h');ring.classList.remove('h')});
+});
+/* NAV */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>60));
+/* SCROLL */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h==='#')return;
+    const t=document.querySelector(h);
+    if(!t)return;
+    e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+scrollY-72,behavior:'smooth'});
+  });
+});
+/* REVEAL */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -44px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>io.observe(el));
+/* PROGRESS BARS */
+const po=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.pb-fill[data-w]').forEach(b=>{
+        setTimeout(()=>{b.style.width=b.getAttribute('data-w')+'%'},300);
+      });
+      po.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+document.querySelectorAll('#shadow').forEach(el=>po.observe(el));
+</script>
+</body>
+</html>
