@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Osilade Oluwapelumi Israel — Sociologist · Analyst · Insurance</title>
+<meta name="description" content="Data Analyst specialising in SQL, Power BI, Python for Insurance Analytics. Operations Officer at Leadway Assurance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=DM+Sans:wght@200;300;400;500&family=DM+Mono:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+/* ═══════════════════════════════════════════════
+   DESIGN TOKENS
+═══════════════════════════════════════════════ */
+:root {
+  /* Base */
+  --bg:        #0f0f14;
+  --bg-2:      #13131a;
+  --bg-3:      #171720;
+  --bg-card:   #1a1a25;
+  --bg-card-2: #1e1e2c;
+
+  /* Text */
+  --ink:       #f0eef8;
+  --ink-70:    rgba(240,238,248,.7);
+  --ink-40:    rgba(240,238,248,.4);
+  --ink-20:    rgba(240,238,248,.18);
+  --ink-10:    rgba(240,238,248,.08);
+
+  /* Accent — Lavender */
+  --lav:       #c084fc;
+  --lav-dim:   rgba(192,132,252,.12);
+  --lav-mid:   rgba(192,132,252,.28);
+  --lav-glow:  rgba(192,132,252,.06);
+
+  /* Accent — Sky Blue */
+  --sky:       #38bdf8;
+  --sky-dim:   rgba(56,189,248,.1);
+  --sky-mid:   rgba(56,189,248,.25);
+
+  /* Gradients */
+  --grad-lav:  linear-gradient(135deg, #c084fc, #a855f7);
+  --grad-sky:  linear-gradient(135deg, #38bdf8, #0ea5e9);
+  --grad-hero: radial-gradient(ellipse 70% 60% at 80% 20%, rgba(192,132,252,.12) 0%, transparent 55%),
+               radial-gradient(ellipse 50% 70% at 10% 80%, rgba(56,189,248,.07) 0%, transparent 50%);
+
+  /* Fonts */
+  --serif:  'Playfair Display', Georgia, serif;
+  --sans:   'DM Sans', system-ui, sans-serif;
+  --mono:   'DM Mono', monospace;
+
+  /* Spacing */
+  --max:    1240px;
+  --ease:   cubic-bezier(.16,1,.3,1);
+  --ease2:  cubic-bezier(.4,0,.2,1);
+}
+
+/* ═══════════════════════════════════════════════
+   RESET & BASE
+═══════════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: var(--sans);
+  background: var(--bg);
+  color: var(--ink);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+a { color: inherit; text-decoration: none; }
+
+/* ═══════════════════════════════════════════════
+   CUSTOM CURSOR
+═══════════════════════════════════════════════ */
+body { cursor: none; }
+#cur { position:fixed; width:8px; height:8px; background:var(--lav); border-radius:50%; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); transition:width .25s,height .25s,background .25s; mix-blend-mode:screen; }
+#cur-ring { position:fixed; width:32px; height:32px; border:1px solid var(--lav-mid); border-radius:50%; pointer-events:none; z-index:9998; transform:translate(-50%,-50%); transition:width .4s var(--ease),height .4s var(--ease),opacity .3s,border-color .3s; }
+#cur.big { width:4px; height:4px; background:var(--sky); }
+#cur-ring.big { width:48px; height:48px; border-color:var(--sky-mid); }
+@media(hover:none){ #cur,#cur-ring{display:none} body{cursor:auto} }
+
+/* ═══════════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════════ */
+.wrap { max-width: var(--max); margin: 0 auto; padding: 0 56px; }
+
+/* ═══════════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════════ */
+#nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 800;
+  transition: all .4s var(--ease);
+}
+.nav-in {
+  max-width: var(--max); margin: 0 auto; padding: 0 56px;
+  height: 68px; display: flex; align-items: center; justify-content: space-between;
+}
+#nav.s .nav-in {
+  background: rgba(15,15,20,.88);
+  backdrop-filter: blur(24px);
+  border-bottom: 1px solid var(--ink-10);
+}
+.nav-logo {
+  font-family: var(--serif);
+  font-size: 1.2rem; font-weight: 500;
+  color: var(--ink); letter-spacing: .01em;
+}
+.nav-logo em { color: var(--lav); font-style: italic; }
+.nav-links { display:flex; gap:32px; list-style:none; align-items:center; }
+.nav-links a {
+  font-size: .75rem; font-weight: 400; letter-spacing: .08em; text-transform: uppercase;
+  color: var(--ink-40); transition: color .25s; position: relative;
+}
+.nav-links a::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:1px; background:var(--lav); transition:width .3s var(--ease); }
+.nav-links a:hover { color: var(--lav); }
+.nav-links a:hover::after { width:100%; }
+.nav-cta {
+  font-size: .72rem !important; letter-spacing: .1em !important;
+  color: var(--lav) !important; border: 1px solid var(--lav-mid) !important;
+  padding: 7px 18px !important; border-radius: 2px !important;
+  transition: all .25s !important;
+}
+.nav-cta::after { display:none !important; }
+.nav-cta:hover { background: var(--lav-dim) !important; color: var(--lav) !important; }
+
+/* Hamburger */
+.ham { display:none; flex-direction:column; gap:5px; cursor:none; background:none; border:none; z-index:801; padding:4px; }
+.ham-bar { width:22px; height:1.5px; background:var(--ink-40); border-radius:1px; transition:all .3s var(--ease); }
+.ham.open .ham-bar:nth-child(1) { transform:translateY(6.5px) rotate(45deg); background:var(--lav); }
+.ham.open .ham-bar:nth-child(2) { opacity:0; transform:scaleX(0); }
+.ham.open .ham-bar:nth-child(3) { transform:translateY(-6.5px) rotate(-45deg); background:var(--lav); }
+.mob-menu {
+  position:fixed; inset:0; background:rgba(15,15,20,.97); backdrop-filter:blur(24px);
+  z-index:800; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  opacity:0; pointer-events:none; transition:opacity .35s var(--ease);
+}
+.mob-menu.open { opacity:1; pointer-events:all; }
+.mob-menu a {
+  font-family:var(--serif); font-size:2.4rem; font-weight:400;
+  color:var(--ink-40); padding:10px 48px; transition:color .2s; letter-spacing:-.01em;
+}
+.mob-menu a:hover { color:var(--lav); }
+
+/* ═══════════════════════════════════════════════
+   ① HERO — "Who are you in one sentence?"
+═══════════════════════════════════════════════ */
+#hero {
+  min-height: 100vh;
+  background: var(--bg);
+  display: flex; flex-direction: column; justify-content: center; align-items: center;
+  text-align: center;
+  position: relative; overflow: hidden;
+  padding: 120px 56px 100px;
+}
+.hero-mesh { position:absolute; inset:0; background:var(--grad-hero); pointer-events:none; }
+.hero-grid {
+  position:absolute; inset:0; pointer-events:none; opacity:.04;
+  background-image: linear-gradient(var(--ink-20) 1px, transparent 1px), linear-gradient(90deg, var(--ink-20) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+.hero-grain {
+  position:absolute; inset:0; pointer-events:none; opacity:.35;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.07'/%3E%3C/svg%3E");
+}
+/* Floating orbs */
+.orb { position:absolute; border-radius:50%; pointer-events:none; filter:blur(80px); }
+.orb-1 { width:500px; height:500px; background:rgba(192,132,252,.07); top:-100px; right:-80px; animation:orbFloat 12s ease-in-out infinite; }
+.orb-2 { width:400px; height:400px; background:rgba(56,189,248,.05); bottom:-80px; left:-60px; animation:orbFloat 16s ease-in-out infinite reverse; }
+@keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.05)} }
+
+.hero-eyebrow {
+  font-family: var(--mono); font-size:.68rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--lav); margin-bottom:28px; display:flex; align-items:center; gap:12px;
+  animation: fadeUp .8s var(--ease) .1s both;
+}
+.hero-eyebrow::before, .hero-eyebrow::after { content:''; flex:1; max-width:40px; height:1px; background:linear-gradient(to right,transparent,var(--lav-mid)); }
+.hero-eyebrow::after { background:linear-gradient(to left,transparent,var(--lav-mid)); }
+
+.hero-name {
+  font-family: var(--serif);
+  font-size: clamp(3.8rem, 9vw, 8.5rem);
+  font-weight: 400; line-height: .92; letter-spacing: -.03em;
+  color: var(--ink); margin-bottom: 10px;
+  animation: fadeUp .9s var(--ease) .22s both;
+}
+.hero-name .dim { color: var(--ink-20); font-style:italic; font-weight:300; }
+.hero-name .bright { color: var(--lav); }
+
+.hero-role {
+  font-family: var(--mono); font-size:.78rem; letter-spacing:.18em; text-transform:uppercase;
+  color: var(--ink-40); margin-bottom: 36px;
+  animation: fadeUp .9s var(--ease) .34s both;
+  display:flex; align-items:center; gap:10px; justify-content:center;
+}
+.hero-role span { color:var(--sky); }
+
+.hero-tagline {
+  font-size: clamp(1.05rem, 1.8vw, 1.3rem); font-weight:300;
+  color: var(--ink-70); max-width: 540px; line-height: 1.75; letter-spacing:-.01em;
+  margin-bottom: 44px;
+  animation: fadeUp .9s var(--ease) .44s both;
+}
+.hero-tagline strong { color:var(--ink); font-weight:500; }
+
+.hero-btns {
+  display:flex; gap:14px; justify-content:center; flex-wrap:wrap;
+  margin-bottom: 72px;
+  animation: fadeUp .9s var(--ease) .54s both;
+}
+.btn-lav {
+  display:inline-flex; align-items:center; gap:7px;
+  background: var(--grad-lav); color: var(--bg);
+  font-family:var(--mono); font-size:.68rem; font-weight:500; letter-spacing:.1em; text-transform:uppercase;
+  padding: 13px 28px; border-radius:2px; cursor:none;
+  transition: all .3s var(--ease); border:none;
+}
+.btn-lav:hover { transform:translateY(-2px); box-shadow:0 12px 40px rgba(192,132,252,.3); }
+.btn-ghost {
+  display:inline-flex; align-items:center; gap:7px;
+  background: transparent; color: var(--ink-40);
+  font-family:var(--mono); font-size:.68rem; font-weight:400; letter-spacing:.1em; text-transform:uppercase;
+  padding: 12px 28px; border-radius:2px; cursor:none;
+  border: 1px solid var(--ink-20);
+  transition: all .3s var(--ease);
+}
+.btn-ghost:hover { border-color:var(--lav-mid); color:var(--lav); transform:translateY(-2px); }
+
+.hero-stats {
+  display:flex; gap:52px; justify-content:center;
+  animation: fadeUp .9s var(--ease) .64s both;
+}
+.h-stat { text-align:center; }
+.h-stat-n { font-family:var(--serif); font-size:2.2rem; font-weight:500; color:var(--lav); display:block; line-height:1; letter-spacing:-.03em; }
+.h-stat-l { font-family:var(--mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-20); display:block; margin-top:5px; }
+
+.hero-scroll {
+  position:absolute; bottom:32px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:7px;
+  animation: fadeUp 1s var(--ease) 1s both;
+}
+.hero-scroll span { font-family:var(--mono); font-size:.58rem; letter-spacing:.2em; text-transform:uppercase; color:var(--ink-20); }
+.s-line { width:1px; height:32px; background:linear-gradient(to bottom,var(--lav-mid),transparent); animation:sLine 2s ease-in-out infinite; }
+@keyframes sLine { 0%,100%{opacity:.3;transform:scaleY(1)}50%{opacity:.9;transform:scaleY(1.1)} }
+
+/* ═══════════════════════════════════════════════
+   TICKER
+═══════════════════════════════════════════════ */
+.ticker-wrap { background:var(--bg-2); overflow:hidden; padding:14px 0; border-top:1px solid var(--ink-10); border-bottom:1px solid var(--ink-10); }
+.ticker-track { display:flex; animation:ticker 34s linear infinite; white-space:nowrap; }
+.ticker-track:hover { animation-play-state:paused; }
+.t-item { display:inline-flex; align-items:center; gap:20px; padding:0 22px; font-family:var(--mono); font-size:.62rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-20); }
+.t-item::after { content:'◆'; font-size:.35rem; color:var(--lav); opacity:.4; }
+@keyframes ticker { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+
+/* ═══════════════════════════════════════════════
+   SECTION SHARED
+═══════════════════════════════════════════════ */
+section { padding: 120px 0; }
+.s-label {
+  font-family:var(--mono); font-size:.62rem; letter-spacing:.2em; text-transform:uppercase;
+  color:var(--lav); display:flex; align-items:center; gap:12px; margin-bottom:18px;
+}
+.s-label::before { content:''; width:24px; height:1px; background:var(--lav-mid); }
+.s-title {
+  font-family: var(--serif);
+  font-size: clamp(2.2rem, 4.5vw, 3.6rem);
+  font-weight: 400; line-height: 1.1; letter-spacing: -.03em;
+  color: var(--ink); margin-bottom: 20px;
+}
+.s-title em { color:var(--lav); font-style:italic; }
+.s-sub { font-size:.97rem; font-weight:300; color:var(--ink-40); max-width:520px; line-height:1.85; letter-spacing:-.01em; }
+
+/* ═══════════════════════════════════════════════
+   ② THE PROBLEM — "Why does your combination matter?"
+═══════════════════════════════════════════════ */
+#problem {
+  background: var(--bg-2);
+  padding: 100px 0;
+  position:relative; overflow:hidden;
+}
+.problem-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:100px; align-items:center;
+}
+.problem-copy .s-title { margin-bottom:24px; }
+.problem-copy p { font-size:.97rem; color:var(--ink-40); line-height:1.9; margin-bottom:18px; font-weight:300; }
+.problem-copy p strong { color:var(--ink); font-weight:500; }
+.problem-quote {
+  margin-top:36px;
+  padding:24px 28px;
+  border-left:2px solid var(--lav-mid);
+  background:var(--lav-glow);
+  border-radius:0 8px 8px 0;
+}
+.problem-quote blockquote { font-family:var(--serif); font-size:1.15rem; font-style:italic; color:var(--ink-70); line-height:1.7; letter-spacing:-.01em; }
+
+/* Skills visual */
+.skills-canvas { position:relative; }
+.skills-section-title { font-family:var(--mono); font-size:.6rem; letter-spacing:.16em; text-transform:uppercase; color:var(--sky); margin-bottom:12px; }
+.skills-block { margin-bottom:28px; }
+.skills-row { display:flex; flex-wrap:wrap; gap:8px; }
+.skill-chip {
+  font-family:var(--mono); font-size:.65rem; letter-spacing:.08em; text-transform:uppercase;
+  padding:7px 14px; border-radius:2px; cursor:none; transition:all .25s var(--ease);
+  border:1px solid var(--ink-10); color:var(--ink-40); background:var(--bg-card);
+}
+.skill-chip:hover { border-color:var(--lav-mid); color:var(--lav); background:var(--lav-dim); transform:translateY(-1px); }
+.skill-chip.sky { border-color:var(--sky-mid); color:var(--sky); background:var(--sky-dim); }
+.skill-chip.lav { border-color:var(--lav-mid); color:var(--lav); background:var(--lav-dim); }
+
+/* ═══════════════════════════════════════════════
+   ③ THE PROOF — Trust Chart (Cinematic Moment)
+═══════════════════════════════════════════════ */
+#proof {
+  background: var(--bg);
+  padding: 140px 0;
+  position:relative; overflow:hidden;
+}
+.proof-inner { text-align:center; max-width:860px; margin:0 auto; }
+.proof-inner .s-label { justify-content:center; }
+.proof-inner .s-label::before { display:none; }
+.proof-inner .s-title { font-size:clamp(2.4rem,5vw,4.2rem); margin-bottom:14px; }
+.proof-inner .s-sub { margin:0 auto 72px; text-align:center; }
+
+/* Chart */
+.chart-wrap { position:relative; }
+.chart-scene {
+  background: var(--bg-card);
+  border:1px solid var(--ink-10);
+  border-radius:16px;
+  padding:48px 52px;
+  position:relative; overflow:hidden;
+}
+.chart-scene::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background: linear-gradient(to right, transparent, var(--lav-mid), var(--sky-mid), transparent);
+}
+.chart-title { font-family:var(--mono); font-size:.65rem; letter-spacing:.16em; text-transform:uppercase; color:var(--ink-20); margin-bottom:40px; text-align:left; }
+.chart-bars { display:flex; flex-direction:column; gap:16px; }
+.bar-row { display:grid; grid-template-columns:130px 1fr 52px; align-items:center; gap:16px; }
+.bar-label { font-size:.82rem; font-weight:400; color:var(--ink-40); text-align:right; letter-spacing:-.01em; }
+.bar-label.highlight { color:var(--ink); font-weight:500; }
+.bar-track { height:10px; background:var(--ink-10); border-radius:6px; overflow:hidden; }
+.bar-fill {
+  height:100%; border-radius:6px; width:0;
+  transition: width 1.4s var(--ease);
+}
+.bar-fill.trust { background: linear-gradient(to right, var(--lav), #a855f7); }
+.bar-fill.insurance { background: linear-gradient(to right, var(--sky), #0ea5e9); }
+.bar-val { font-family:var(--mono); font-size:.78rem; font-weight:500; color:var(--ink-40); }
+.bar-val.trust-val { color:var(--lav); }
+.bar-val.ins-val { color:var(--sky); }
+
+.chart-divider { height:1px; background:var(--ink-10); margin:24px 0; }
+.chart-finding {
+  display:flex; align-items:flex-start; gap:16px; text-align:left;
+  padding:20px 24px; background:var(--lav-glow); border-radius:8px; border:1px solid var(--lav-dim);
+}
+.finding-dot { width:8px; height:8px; border-radius:50%; background:var(--lav); flex-shrink:0; margin-top:6px; animation:pulse 2.5s ease-in-out infinite; }
+@keyframes pulse { 0%,100%{opacity:1}50%{opacity:.3} }
+.finding-text { font-family:var(--serif); font-size:1rem; font-style:italic; color:var(--ink-70); line-height:1.65; }
+.finding-text strong { color:var(--lav); font-style:normal; font-weight:600; }
+.chart-note { font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-20); text-align:right; margin-top:16px; }
+
+/* ═══════════════════════════════════════════════
+   ④ EXPERIENCE — "Where have you applied it?"
+═══════════════════════════════════════════════ */
+#experience { background:var(--bg-2); }
+.exp-intro { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:64px; }
+.exp-grid { display:grid; grid-template-columns:1fr 1fr; gap:2px; background:var(--ink-10); border-radius:12px; overflow:hidden; }
+.exp-card {
+  background:var(--bg-card); padding:36px 32px;
+  position:relative; overflow:hidden; cursor:none;
+  transition: background .3s var(--ease);
+}
+.exp-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--lav),transparent); transform:scaleX(0); transform-origin:left; transition:transform .45s var(--ease); }
+.exp-card:hover { background:var(--bg-card-2); }
+.exp-card:hover::before { transform:scaleX(1); }
+.exp-tag { font-family:var(--mono); font-size:.58rem; letter-spacing:.12em; text-transform:uppercase; padding:3px 9px; border-radius:2px; margin-bottom:16px; display:inline-block; }
+.exp-tag.nysc { background:rgba(192,132,252,.12); color:var(--lav); border:1px solid var(--lav-dim); }
+.exp-tag.ed { background:rgba(56,189,248,.1); color:var(--sky); border:1px solid var(--sky-dim); }
+.exp-tag.edu { background:rgba(52,211,153,.1); color:#34d399; border:1px solid rgba(52,211,153,.2); }
+.exp-tag.hc { background:rgba(251,146,60,.1); color:#fb923c; border:1px solid rgba(251,146,60,.2); }
+.exp-tag.cr { background:rgba(248,113,113,.1); color:#f87171; border:1px solid rgba(248,113,113,.2); }
+.exp-tag.adm { background:rgba(148,163,184,.1); color:#94a3b8; border:1px solid rgba(148,163,184,.2); }
+.exp-period { font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; color:var(--ink-20); margin-bottom:10px; }
+.exp-title { font-family:var(--serif); font-size:1.25rem; font-weight:500; color:var(--ink); letter-spacing:-.02em; margin-bottom:4px; line-height:1.25; }
+.exp-org { font-size:.8rem; color:var(--ink-40); margin-bottom:18px; }
+.exp-list { list-style:none; display:flex; flex-direction:column; gap:7px; }
+.exp-list li { font-size:.8rem; color:var(--ink-20); padding-left:14px; position:relative; line-height:1.65; }
+.exp-list li::before { content:''; position:absolute; left:0; top:10px; width:5px; height:1px; background:var(--lav); opacity:.5; }
+
+/* ═══════════════════════════════════════════════
+   ⑤ PROJECTS — "What have you built?"
+═══════════════════════════════════════════════ */
+#projects { background:var(--bg); }
+.proj-header { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:64px; align-items:end; }
+
+/* Featured project */
+.proj-featured {
+  display:grid; grid-template-columns:1fr 1.35fr;
+  background:var(--bg-card); border:1px solid var(--ink-10); border-radius:14px;
+  overflow:hidden; margin-bottom:20px; cursor:none;
+  transition: all .4s var(--ease);
+}
+.proj-featured:hover { border-color:var(--lav-mid); box-shadow:0 0 0 1px var(--lav-dim), 0 32px 80px rgba(0,0,0,.4); transform:translateY(-3px); }
+.proj-left {
+  background:var(--bg-3); padding:44px 40px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  position:relative; overflow:hidden;
+}
+.proj-left::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--lav),var(--sky),transparent); }
+.proj-left::after { content:'01'; position:absolute; bottom:-28px; right:-8px; font-family:var(--serif); font-size:140px; font-weight:700; color:rgba(192,132,252,.04); line-height:1; pointer-events:none; }
+.proj-badge {
+  display:inline-flex; align-items:center; gap:7px; width:fit-content;
+  font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase;
+  padding:5px 11px; border-radius:20px;
+}
+.badge-live { background:rgba(192,132,252,.14); color:var(--lav); border:1px solid var(--lav-dim); }
+.badge-done { background:rgba(52,211,153,.12); color:#34d399; border:1px solid rgba(52,211,153,.2); }
+.proj-left h3 { font-family:var(--serif); font-size:clamp(1.5rem,2.5vw,2.1rem); font-weight:400; color:var(--ink); line-height:1.2; letter-spacing:-.02em; margin-top:28px; }
+.proj-left h3 em { color:var(--lav); font-style:italic; }
+.proj-tags { display:flex; flex-wrap:wrap; gap:6px; margin-top:16px; }
+.proj-tag { font-family:var(--mono); font-size:.58rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-20); background:var(--ink-10); border:1px solid var(--ink-10); padding:4px 9px; border-radius:2px; }
+.proj-right { padding:44px 40px; display:flex; flex-direction:column; justify-content:space-between; }
+.proj-right h4 { font-size:.95rem; font-weight:600; color:var(--ink-70); margin-bottom:12px; line-height:1.4; letter-spacing:-.01em; }
+.proj-right p { font-size:.83rem; color:var(--ink-40); line-height:1.85; margin-bottom:14px; font-weight:300; }
+.proj-info { background:var(--lav-glow); border-left:2px solid var(--lav-mid); padding:12px 16px; border-radius:0 6px 6px 0; margin-bottom:20px; }
+.proj-info p { font-size:.79rem; color:var(--ink-40); margin:0; line-height:1.65; }
+.proj-info p strong { color:var(--lav); }
+.proj-metrics { display:flex; flex-wrap:wrap; gap:7px; margin-bottom:20px; }
+.proj-metric { font-family:var(--mono); font-size:.62rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-20); background:var(--ink-10); border:1px solid var(--ink-10); padding:4px 10px; border-radius:3px; }
+.link-lav { font-family:var(--mono); font-size:.65rem; letter-spacing:.1em; text-transform:uppercase; color:var(--lav); display:inline-flex; align-items:center; gap:6px; transition:gap .25s; cursor:none; }
+.link-lav:hover { gap:10px; }
+
+/* Second featured */
+.proj-featured-2 { grid-template-columns:1fr 1.35fr; }
+.proj-left-2 { background:var(--bg-3); }
+.proj-left-2::after { content:'02'; }
+
+/* Mini grid */
+.proj-mini-grid { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:20px; }
+.proj-mini { background:var(--bg-card); border:1px solid var(--ink-10); border-radius:12px; overflow:hidden; cursor:none; transition:all .3s var(--ease); }
+.proj-mini:hover { border-color:var(--sky-mid); box-shadow:0 0 0 1px var(--sky-dim), 0 16px 48px rgba(0,0,0,.3); transform:translateY(-2px); }
+.pm-top { background:var(--bg-3); padding:26px; min-height:160px; display:flex; flex-direction:column; justify-content:space-between; position:relative; }
+.pm-top::after { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,var(--sky),transparent); }
+.pm-title { font-family:var(--serif); font-size:1.1rem; font-weight:500; color:var(--ink); line-height:1.25; margin-top:16px; letter-spacing:-.02em; }
+.pm-desc-top { font-size:.76rem; color:var(--ink-20); line-height:1.65; margin-top:8px; font-weight:300; }
+.pm-body { padding:20px 22px; }
+.pm-body p { font-size:.8rem; color:var(--ink-40); line-height:1.75; margin-bottom:14px; font-weight:300; }
+.pm-tags { display:flex; flex-wrap:wrap; gap:5px; }
+.pm-tag { font-family:var(--mono); font-size:.6rem; letter-spacing:.07em; text-transform:uppercase; color:var(--ink-20); background:var(--ink-10); border:1px solid var(--ink-10); padding:3px 8px; border-radius:2px; }
+
+/* ═══════════════════════════════════════════════
+   ⑥ TESTIMONIALS — "Do others see it too?"
+═══════════════════════════════════════════════ */
+#testimonials { background:var(--bg-2); }
+.test-grid { display:grid; grid-template-columns:1fr 1fr; gap:20px; margin-top:52px; }
+.test-card { background:var(--bg-card); border:1px solid var(--ink-10); border-radius:14px; padding:36px; cursor:none; transition:all .3s; }
+.test-card:hover { border-color:var(--lav-mid); background:var(--bg-card-2); }
+.test-mark { font-family:var(--serif); font-size:3.5rem; color:var(--lav); opacity:.4; display:block; line-height:.8; margin-bottom:18px; }
+.test-quote { font-size:.88rem; color:var(--ink-40); line-height:1.9; margin-bottom:24px; font-weight:300; letter-spacing:-.01em; }
+.test-name { font-size:.88rem; font-weight:600; color:var(--ink-70); margin-bottom:3px; }
+.test-role { font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-20); }
+
+/* ═══════════════════════════════════════════════
+   SQL
+═══════════════════════════════════════════════ */
+#sql { background:var(--bg); }
+.sql-intro { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-bottom:56px; align-items:end; }
+.sql-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:14px; }
+.sql-card { background:var(--bg-card); border:1px solid var(--ink-10); border-radius:12px; padding:22px; cursor:none; transition:all .3s var(--ease); }
+.sql-card:hover { border-color:var(--sky-mid); background:var(--bg-card-2); transform:translateY(-2px); box-shadow:0 8px 30px rgba(0,0,0,.3); }
+.sql-diff { font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; padding:3px 9px; border-radius:20px; margin-bottom:12px; display:inline-block; }
+.d-beg { background:rgba(52,211,153,.12); color:#34d399; border:1px solid rgba(52,211,153,.2); }
+.d-int { background:var(--sky-dim); color:var(--sky); border:1px solid var(--sky-mid); }
+.sql-title { font-size:.9rem; font-weight:600; color:var(--ink-70); margin-bottom:7px; letter-spacing:-.01em; }
+.sql-desc { font-size:.78rem; color:var(--ink-20); line-height:1.7; margin-bottom:14px; font-weight:300; }
+.sql-code {
+  background:var(--bg); border-radius:8px; padding:14px 16px;
+  font-family:var(--mono); font-size:.7rem; line-height:1.85;
+  color:var(--ink-20); border:1px solid var(--ink-10); overflow-x:auto;
+}
+.kw { color:#c084fc; font-weight:500; }
+.fn { color:var(--sky); }
+.str { color:#f87171; }
+.sql-cta { text-align:center; margin-top:36px; }
+
+/* ═══════════════════════════════════════════════
+   EDUCATION
+═══════════════════════════════════════════════ */
+#education { background:var(--bg-2); }
+.edu-grid { display:grid; grid-template-columns:1fr 1fr; gap:80px; margin-top:56px; align-items:start; }
+.edu-item { padding:22px 0; border-bottom:1px solid var(--ink-10); transition:all .25s; }
+.edu-item:last-child { border-bottom:none; }
+.edu-item:hover { padding-left:8px; }
+.edu-yr { font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--sky); margin-bottom:7px; }
+.edu-deg { font-size:.95rem; font-weight:500; color:var(--ink-70); margin-bottom:3px; line-height:1.3; letter-spacing:-.01em; }
+.edu-inst { font-size:.8rem; color:var(--ink-20); }
+.cert-head { font-family:var(--mono); font-size:.65rem; letter-spacing:.14em; text-transform:uppercase; color:var(--lav); margin-bottom:18px; }
+.cert-stack { display:flex; flex-direction:column; gap:2px; }
+.cert-row { display:flex; align-items:center; gap:16px; padding:13px 16px; border-radius:8px; transition:background .2s; cursor:none; }
+.cert-row:hover { background:var(--bg-card); }
+.cert-n { font-family:var(--mono); font-size:.62rem; color:var(--lav); opacity:.5; min-width:22px; }
+.cert-name { font-size:.85rem; font-weight:500; color:var(--ink-70); margin-bottom:2px; letter-spacing:-.01em; }
+.cert-by { font-size:.72rem; color:var(--ink-20); }
+
+/* ═══════════════════════════════════════════════
+   RESEARCH (Standalone)
+═══════════════════════════════════════════════ */
+#shadow {
+  background: var(--bg);
+  position:relative; overflow:hidden;
+}
+.shadow-glow { position:absolute; inset:0; background:radial-gradient(ellipse 60% 80% at 50% 50%, rgba(192,132,252,.05) 0%, transparent 60%); pointer-events:none; }
+.shadow-grid { display:grid; grid-template-columns:1fr 1fr; gap:72px; align-items:start; margin-top:56px; }
+.shadow-copy p { font-size:.92rem; color:var(--ink-40); line-height:1.9; margin-bottom:16px; font-weight:300; }
+.prog-item { margin-bottom:18px; }
+.prog-row { display:flex; justify-content:space-between; margin-bottom:7px; }
+.prog-row span { font-size:.78rem; color:var(--ink-40); }
+.prog-row strong { font-family:var(--mono); font-size:.62rem; letter-spacing:.08em; text-transform:uppercase; color:var(--ink-20); }
+.prog-track { height:3px; background:var(--ink-10); border-radius:2px; overflow:hidden; }
+.prog-fill { height:100%; background:linear-gradient(to right,var(--lav),var(--sky)); border-radius:2px; width:0; transition:width 1.4s var(--ease); }
+.shadow-card { background:var(--bg-card); border:1px solid var(--ink-10); border-radius:14px; padding:36px; position:relative; overflow:hidden; }
+.shadow-card::before { content:''; position:absolute; top:0; left:0; right:0; height:2px; background:linear-gradient(to right,transparent,var(--lav-mid),var(--sky-mid),transparent); }
+.sh-card-title { font-family:var(--serif); font-size:1.15rem; font-weight:500; color:var(--ink); letter-spacing:-.02em; margin-bottom:4px; }
+.sh-card-sub { font-family:var(--mono); font-size:.6rem; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-20); margin-bottom:24px; }
+.sh-metrics { display:grid; grid-template-columns:repeat(3,1fr); gap:0; border:1px solid var(--ink-10); border-radius:8px; overflow:hidden; margin-bottom:22px; }
+.sh-metric { padding:16px 12px; text-align:center; border-right:1px solid var(--ink-10); }
+.sh-metric:last-child { border-right:none; }
+.sh-mn { font-family:var(--serif); font-size:1.7rem; font-weight:500; color:var(--lav); display:block; letter-spacing:-.04em; line-height:1; }
+.sh-ml { font-family:var(--mono); font-size:.58rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-20); display:block; margin-top:4px; }
+.shadow-card p { font-size:.8rem; color:var(--ink-20); line-height:1.85; margin-bottom:16px; font-weight:300; }
+.sh-tags { display:flex; flex-wrap:wrap; gap:6px; }
+.sh-tag { font-family:var(--mono); font-size:.6rem; letter-spacing:.07em; text-transform:uppercase; color:var(--lav); background:var(--lav-dim); border:1px solid var(--lav-mid); padding:4px 9px; border-radius:2px; }
+.sh-status { display:flex; align-items:flex-start; gap:12px; background:var(--lav-glow); border:1px solid var(--lav-dim); border-radius:10px; padding:16px 18px; margin-top:20px; }
+.sh-dot { width:7px; height:7px; border-radius:50%; background:var(--lav); flex-shrink:0; margin-top:5px; animation:pulse 2.5s ease-in-out infinite; }
+.sh-status-text span { font-family:var(--mono); font-size:.62rem; letter-spacing:.1em; text-transform:uppercase; color:var(--lav); display:block; margin-bottom:4px; }
+.sh-status-text p { font-size:.78rem; color:var(--ink-20); margin:0; line-height:1.55; font-weight:300; }
+
+/* ═══════════════════════════════════════════════
+   ⑦ CONTACT — "The Invitation"
+═══════════════════════════════════════════════ */
+#contact {
+  background: var(--bg-2);
+  padding: 140px 0;
+  text-align:center; position:relative; overflow:hidden;
+}
+.contact-glow { position:absolute; width:600px; height:600px; border-radius:50%; background:radial-gradient(circle,rgba(192,132,252,.07) 0%,transparent 65%); top:50%; left:50%; transform:translate(-50%,-50%); pointer-events:none; }
+.contact-inner { max-width:580px; margin:0 auto; position:relative; }
+.contact-inner .s-label { justify-content:center; }
+.contact-inner .s-label::before { display:none; }
+.contact-inner .s-title { font-size:clamp(2.8rem,5.5vw,4.5rem); margin-bottom:18px; }
+.contact-inner .s-title em { color:var(--sky); }
+.contact-inner p { font-size:.97rem; color:var(--ink-40); line-height:1.8; margin-bottom:44px; font-weight:300; }
+.contact-btns { display:flex; gap:12px; justify-content:center; flex-wrap:wrap; margin-bottom:56px; }
+.contact-links { display:flex; gap:40px; justify-content:center; }
+.c-link { display:flex; flex-direction:column; align-items:center; gap:5px; cursor:none; transition:opacity .25s; }
+.c-link:hover { opacity:.55; }
+.c-link-label { font-family:var(--mono); font-size:.58rem; letter-spacing:.14em; text-transform:uppercase; color:var(--ink-20); }
+.c-link-val { font-size:.82rem; color:var(--ink-40); }
+
+/* ═══════════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════════ */
+footer { background:var(--bg); padding:36px 0; border-top:1px solid var(--ink-10); }
+.foot-in { display:flex; align-items:center; justify-content:space-between; }
+.foot-logo { font-family:var(--serif); font-size:1rem; font-weight:500; color:var(--ink-20); }
+.foot-logo em { color:var(--lav); font-style:italic; }
+.foot-copy { font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-20); }
+.foot-tag { font-family:var(--mono); font-size:.6rem; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-20); }
+
+/* ═══════════════════════════════════════════════
+   REVEAL ANIMATIONS
+═══════════════════════════════════════════════ */
+.rv { opacity:0; transform:translateY(28px); transition:opacity .8s var(--ease),transform .8s var(--ease); }
+.rv.in { opacity:1; transform:translateY(0); }
+.rvl { opacity:0; transform:translateX(-28px); transition:opacity .8s var(--ease),transform .8s var(--ease); }
+.rvl.in { opacity:1; transform:translateX(0); }
+.rvr { opacity:0; transform:translateX(28px); transition:opacity .8s var(--ease),transform .8s var(--ease); }
+.rvr.in { opacity:1; transform:translateX(0); }
+.d1{transition-delay:.08s}.d2{transition-delay:.16s}.d3{transition-delay:.24s}.d4{transition-delay:.32s}.d5{transition-delay:.4s}.d6{transition-delay:.48s}
+@keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+
+/* ═══════════════════════════════════════════════
+   RESPONSIVE
+═══════════════════════════════════════════════ */
+@media(max-width:1024px){
+  .wrap,.nav-in{padding-left:32px;padding-right:32px}
+  .problem-grid,.exp-intro,.proj-header,.edu-grid,.shadow-grid,.sql-intro{grid-template-columns:1fr;gap:44px}
+  .proj-featured,.proj-featured-2{grid-template-columns:1fr}
+  .exp-grid{grid-template-columns:1fr}
+  .test-grid{grid-template-columns:1fr}
+  .sql-grid{grid-template-columns:1fr 1fr}
+  .hero-stats{gap:28px}
+}
+@media(max-width:768px){
+  .wrap,.nav-in{padding-left:20px;padding-right:20px}
+  section{padding:80px 0}
+  .nav-links{display:none}
+  .ham{display:flex}
+  .proj-mini-grid{grid-template-columns:1fr}
+  .sql-grid{grid-template-columns:1fr}
+  .hero-stats{gap:20px;flex-wrap:wrap;justify-content:center}
+  #contact{padding:100px 20px}
+  .contact-links{gap:20px;flex-wrap:wrap}
+  .foot-in{flex-direction:column;gap:10px;text-align:center}
+}
+@media(max-width:480px){
+  .hero-btns,.contact-btns{flex-direction:column;align-items:center}
+  .btn-lav,.btn-ghost{text-align:center;justify-content:center;width:100%;max-width:280px}
+}
+</style>
+</head>
+<body>
+
+<div id="cur"></div>
+<div id="cur-ring"></div>
+
+<!-- MOBILE MENU -->
+<div class="mob-menu" id="mob-menu">
+  <a href="#problem" class="mob-lnk">About</a>
+  <a href="#experience" class="mob-lnk">Experience</a>
+  <a href="#projects" class="mob-lnk">Projects</a>
+  <a href="#sql" class="mob-lnk">SQL</a>
+  <a href="#education" class="mob-lnk">Education</a>
+  <a href="#shadow" class="mob-lnk">Research</a>
+  <a href="#contact" class="mob-lnk">Contact</a>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#hero" class="nav-logo">O<em>.</em>Israel</a>
+    <ul class="nav-links">
+      <li><a href="#problem">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#sql">SQL</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#shadow">Research</a></li>
+      <li><a href="#contact" class="nav-cta">Contact</a></li>
+    </ul>
+    <button class="ham" id="ham" aria-label="Toggle menu">
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
+      <span class="ham-bar"></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ════════════════════════════════
+  ① HERO — Who are you?
+════════════════════════════════ -->
+<section id="hero">
+  <div class="hero-mesh"></div>
+  <div class="hero-grid"></div>
+  <div class="hero-grain"></div>
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+
+  <div class="hero-eyebrow">Lagos, Nigeria &mdash; Open to Opportunities &mdash; 2026</div>
+
+  <h1 class="hero-name">
+    Osilade<br>
+    <span class="dim">Oluwapelumi</span><br>
+    <span class="bright">Israel</span>
+  </h1>
+
+  <div class="hero-role">
+    Sociologist <span>·</span> Data Analyst <span>·</span> Insurance Professional
+  </div>
+
+  <p class="hero-tagline">
+    I ask <strong>why</strong> data looks the way it does —
+    using a sociology lens to connect human behaviour, risk,
+    and evidence into stories that drive real decisions.
+  </p>
+
+  <div class="hero-btns">
+    <a href="#projects" class="btn-lav">View My Work</a>
+    <a href="#proof" class="btn-ghost">See The Research</a>
+    <a href="https://github.com/osilade/Osilade.Portfolio" target="_blank" class="btn-ghost">GitHub</a>
+  </div>
+
+  <div class="hero-stats">
+    <div class="h-stat"><span class="h-stat-n">1+</span><span class="h-stat-l">Years Experience</span></div>
+    <div class="h-stat"><span class="h-stat-n">6</span><span class="h-stat-l">Certifications</span></div>
+    <div class="h-stat"><span class="h-stat-n">4</span><span class="h-stat-l">Industries</span></div>
+    <div class="h-stat"><span class="h-stat-n">2:1</span><span class="h-stat-l">BSc Sociology</span></div>
+  </div>
+
+  <div class="hero-scroll"><span>Scroll</span><div class="s-line"></div></div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-wrap" aria-hidden="true">
+  <div class="ticker-track">
+    <span class="t-item">SQL</span><span class="t-item">Power BI</span><span class="t-item">Python</span><span class="t-item">Excel</span><span class="t-item">DAX</span><span class="t-item">Sociology</span><span class="t-item">Underwriting</span><span class="t-item">Claims Operations</span><span class="t-item">Risk Management</span><span class="t-item">KYC &amp; AML</span><span class="t-item">Survey Design</span><span class="t-item">Statistical Analysis</span><span class="t-item">NIID</span><span class="t-item">ACIIN In Progress</span><span class="t-item">SQL</span><span class="t-item">Power BI</span><span class="t-item">Python</span><span class="t-item">Excel</span><span class="t-item">DAX</span><span class="t-item">Sociology</span><span class="t-item">Underwriting</span><span class="t-item">Claims Operations</span><span class="t-item">Risk Management</span><span class="t-item">KYC &amp; AML</span><span class="t-item">Survey Design</span><span class="t-item">Statistical Analysis</span><span class="t-item">NIID</span><span class="t-item">ACIIN In Progress</span>
+  </div>
+</div>
+
+<!-- ════════════════════════════════
+  ② THE PROBLEM — Why does your combination matter?
+════════════════════════════════ -->
+<section id="problem">
+  <div class="wrap">
+    <div class="problem-grid">
+      <div class="rvl">
+        <span class="s-label">01 &mdash; About</span>
+        <h2 class="s-title">Where Sociology<br>Meets <em>Analytics</em></h2>
+        <p>Most analysts see a number. I see the human being behind it. My Sociology degree trained me to trace behaviour back to <strong>systems, structures, and social conditions</strong> — a rare and valuable lens in insurance and data analytics.</p>
+        <p>At Leadway Assurance I work across underwriting, claims, and operational intelligence. I also teach strategic thinking through chess — because good analysis and good teaching share one skill: <strong>making the complex clear</strong>.</p>
+        <p>Building toward full <strong>ACIIN qualification</strong> — with data as my differentiator, sociology as my foundation, and communication as my edge.</p>
+        <div class="problem-quote rv">
+          <blockquote>"Numbers tell you what happened. Sociology tells you why. Insurance is where both matter most."</blockquote>
+        </div>
+      </div>
+      <div class="rvr d1">
+        <div class="skills-canvas">
+          <div class="skills-block">
+            <div class="skills-section-title">Technical Skills</div>
+            <div class="skills-row">
+              <span class="skill-chip sky">SQL</span>
+              <span class="skill-chip sky">Power BI</span>
+              <span class="skill-chip sky">Python</span>
+              <span class="skill-chip sky">Excel</span>
+              <span class="skill-chip sky">DAX</span>
+              <span class="skill-chip sky">Power Query</span>
+              <span class="skill-chip">Underwriting</span>
+              <span class="skill-chip">Claims Ops</span>
+              <span class="skill-chip">KYC / AML</span>
+              <span class="skill-chip">Risk Mgmt</span>
+              <span class="skill-chip">Survey Design</span>
+              <span class="skill-chip">Statistical Analysis</span>
+            </div>
+          </div>
+          <div class="skills-block">
+            <div class="skills-section-title" style="color:var(--lav)">Soft Skills</div>
+            <div class="skills-row">
+              <span class="skill-chip lav">Communication</span>
+              <span class="skill-chip lav">Critical Thinking</span>
+              <span class="skill-chip lav">Teaching</span>
+              <span class="skill-chip lav">Observation</span>
+              <span class="skill-chip lav">Stakeholder Engagement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  ③ THE PROOF — The Trust Chart
+════════════════════════════════ -->
+<section id="proof">
+  <div class="orb" style="width:600px;height:600px;background:rgba(192,132,252,.04);top:-100px;right:-150px;"></div>
+  <div class="wrap">
+    <div class="proof-inner">
+      <span class="s-label rv">03 &mdash; The Research Question</span>
+      <h2 class="s-title rv d1">A Gap That Data<br>Alone Can't <em>Explain</em></h2>
+      <p class="s-sub rv d2">In Abeokuta South, traders trust informal savings with everything — yet barely touch formal insurance. The numbers raise a question that only sociology can answer.</p>
+
+      <div class="chart-wrap rv d3">
+        <div class="chart-scene">
+          <div class="chart-title">Trust Score by Financial Institution &mdash; Abeokuta South Field Study, 2026</div>
+          <div class="chart-bars" id="chart-bars">
+            <div class="bar-row"><span class="bar-label highlight">Ajo (Informal)</span><div class="bar-track"><div class="bar-fill trust" data-w="96"></div></div><span class="bar-val trust-val">8.7</span></div>
+            <div class="bar-row"><span class="bar-label">Church Groups</span><div class="bar-track"><div class="bar-fill trust" data-w="92" style="opacity:.8"></div></div><span class="bar-val trust-val">8.4</span></div>
+            <div class="bar-row"><span class="bar-label">Hometown Assoc.</span><div class="bar-track"><div class="bar-fill trust" data-w="88" style="opacity:.65"></div></div><span class="bar-val trust-val">8.1</span></div>
+            <div class="bar-row"><span class="bar-label">Family Networks</span><div class="bar-track"><div class="bar-fill trust" data-w="84" style="opacity:.5"></div></div><span class="bar-val trust-val">7.9</span></div>
+            <div class="bar-row"><span class="bar-label">Transport Unions</span><div class="bar-track"><div class="bar-fill trust" data-w="78" style="opacity:.4"></div></div><span class="bar-val trust-val">7.6</span></div>
+            <div class="chart-divider"></div>
+            <div class="bar-row"><span class="bar-label highlight" style="color:var(--sky)">Formal Insurance</span><div class="bar-track"><div class="bar-fill insurance" data-w="29"></div></div><span class="bar-val ins-val">3.2</span></div>
+          </div>
+          <div class="chart-finding">
+            <div class="finding-dot"></div>
+            <div class="finding-text">The gap is not about <strong>risk awareness</strong>. It is about <strong>trust, language, and access</strong> — the exact territory where sociology and insurance collide.</div>
+          </div>
+          <div class="chart-note">Primary Research &middot; Abeokuta South &middot; 2026 &middot; N=200</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  ④ EXPERIENCE — Where have you applied it?
+════════════════════════════════ -->
+<section id="experience">
+  <div class="wrap">
+    <div class="exp-intro">
+      <div class="rvl">
+        <span class="s-label">02 &mdash; Experience</span>
+        <h2 class="s-title">Where I've<br>Built My <em>Edge</em></h2>
+      </div>
+      <div class="rvr d1">
+        <p class="s-sub">Every role added a layer — operations, education, healthcare, creative. The thread running through all of them: making sense of messy information and communicating it clearly.</p>
+      </div>
+    </div>
+    <div class="exp-grid">
+      <div class="exp-card rv d1">
+        <span class="exp-tag nysc">NYSC</span>
+        <div class="exp-period">2025 &mdash; 2026</div>
+        <div class="exp-title">Operations Officer</div>
+        <div class="exp-org">Leadway Assurance Company Limited</div>
+        <ul class="exp-list">
+          <li>Reviewed and validated client documents post-KYC for underwriting compliance</li>
+          <li>Assisted in policy operations — renewals, endorsements, cancellations</li>
+          <li>Tracked claims pipelines and ensured timely resolution</li>
+          <li>Maintained NIID database for motor policy renewals</li>
+          <li>Prepared performance reports for departmental monitoring</li>
+        </ul>
+      </div>
+      <div class="exp-card rv d2">
+        <span class="exp-tag ed">EdTech</span>
+        <div class="exp-period">2023 &mdash; Present</div>
+        <div class="exp-title">Founder &amp; Lead Instructor</div>
+        <div class="exp-org">Knight Code</div>
+        <ul class="exp-list">
+          <li>Built Power BI dashboards to track revenue and customer behaviour</li>
+          <li>Designed 9-module curriculum: chess strategy meets tech skills for youth</li>
+          <li>Grew brand through strategic Instagram and YouTube content</li>
+        </ul>
+      </div>
+      <div class="exp-card rv d3">
+        <span class="exp-tag edu">Education</span>
+        <div class="exp-period">2023 &mdash; 2025</div>
+        <div class="exp-title">Chess Development Instructor</div>
+        <div class="exp-org">Royal Academy</div>
+        <ul class="exp-list">
+          <li>Designed and delivered chess training programmes for all skill levels</li>
+          <li>Analysed game performance and provided structured feedback to develop critical thinking</li>
+        </ul>
+      </div>
+      <div class="exp-card rv d4">
+        <span class="exp-tag hc">Healthcare</span>
+        <div class="exp-period">2023 &mdash; 2025</div>
+        <div class="exp-title">Social Media Manager</div>
+        <div class="exp-org">U &amp; U Geriatric Care</div>
+        <ul class="exp-list">
+          <li>Built and maintained digital brand presence for healthcare provider</li>
+          <li>Analysed performance data and optimised reach and engagement</li>
+        </ul>
+      </div>
+      <div class="exp-card rv d5">
+        <span class="exp-tag cr">Creative</span>
+        <div class="exp-period">2023 &mdash; 2024</div>
+        <div class="exp-title">Social Media Manager</div>
+        <div class="exp-org">Love &amp; Luxury Studio</div>
+        <ul class="exp-list">
+          <li>Developed multi-platform social strategies for brand awareness</li>
+          <li>Managed content aligned with premium brand identity</li>
+        </ul>
+      </div>
+      <div class="exp-card rv d6">
+        <span class="exp-tag adm">Admin</span>
+        <div class="exp-period">2019 &mdash; 2020</div>
+        <div class="exp-title">Office Assistant</div>
+        <div class="exp-org">Classic Technology Solution</div>
+        <ul class="exp-list">
+          <li>Managed day-to-day office operations including scheduling, filing, and record-keeping</li>
+          <li>Assisted in preparing reports and documents ensuring accuracy and timely submission</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  ⑤ PROJECTS — What have you built?
+════════════════════════════════ -->
+<section id="projects">
+  <div class="wrap">
+    <div class="proj-header">
+      <div class="rvl">
+        <span class="s-label">03 &mdash; Projects</span>
+        <h2 class="s-title">Analytics &amp;<br><em>Research</em> Work</h2>
+      </div>
+      <div class="rvr d1">
+        <p class="s-sub">Real projects I am actively building. Every tool is one I already know. Every number is one I can explain.</p>
+      </div>
+    </div>
+
+    <!-- Featured: Shadow Insurance -->
+    <div class="proj-featured rv">
+      <div class="proj-left">
+        <span class="proj-badge badge-live"><span style="width:5px;height:5px;border-radius:50%;background:var(--lav);animation:pulse 2.5s infinite"></span>Fieldwork In Progress &mdash; Q2 2026</span>
+        <div>
+          <h3>The Shadow Insurance Economy<br>of <em>Abeokuta South</em></h3>
+          <div class="proj-tags">
+            <span class="proj-tag">Survey Design</span>
+            <span class="proj-tag">Excel</span>
+            <span class="proj-tag">Power BI</span>
+            <span class="proj-tag">Statistical Analysis</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-right">
+        <div>
+          <h4>Why 156 traders trust ajo — but only 11 own formal insurance</h4>
+          <p>Primary research study across 5 markets in Abeokuta South. Structured questionnaires with 200 traders mapping the trust gap between informal savings systems and formal insurance. My own fieldwork. My own data.</p>
+          <p>Survey instruments designed, pilot tested, data collection underway. Full analysis and Power BI dashboard to follow on completion.</p>
+          <div class="proj-info"><p><strong>Currently conducting fieldwork.</strong> 200 respondents across Laderin, Oke Mosan, Onikolobo, OOPL and Tekobo markets. Expected completion Q2 2026.</p></div>
+        </div>
+        <div>
+          <div class="proj-metrics">
+            <span class="proj-metric">200 Respondents</span>
+            <span class="proj-metric">5 Markets</span>
+            <span class="proj-metric">Abeokuta South</span>
+            <span class="proj-metric">2026</span>
+          </div>
+          <a href="https://github.com/osilade/Osilade.Portfolio/tree/main/projects/01-shadow-insurance-research" target="_blank" class="link-lav">View Research <span>→</span></a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Featured: Final Year -->
+    <div class="proj-featured rv">
+      <div class="proj-left proj-left-2" style="background:#16161e">
+        <span class="proj-badge badge-done">✓ Completed &mdash; Final Year 2024</span>
+        <div>
+          <h3>Sex &amp; Marriage Sustainability<br>in <em>Alimosho LGA</em></h3>
+          <div class="proj-tags">
+            <span class="proj-tag">Qualitative Research</span>
+            <span class="proj-tag">In-depth Interviews</span>
+            <span class="proj-tag">Thematic Analysis</span>
+            <span class="proj-tag">Sociology</span>
+          </div>
+        </div>
+      </div>
+      <div class="proj-right">
+        <div>
+          <h4>How education shapes intimacy — and why it matters for marriage</h4>
+          <p>A qualitative sociology study exploring how sexual intimacy influences marriage sustainability among couples in Alimosho LGA. Conducted through semi-structured in-depth interviews using purposive sampling, with thematic analysis applied to findings.</p>
+          <p>The central finding: education plays a significant role in sexual compatibility and marital stability. Educated partners communicate more openly, generating greater satisfaction and stronger emotional bonds.</p>
+          <div class="proj-info"><p><strong>Key finding:</strong> Communication, not just attraction, sustains marriage.</p></div>
+        </div>
+        <div class="proj-metrics">
+          <span class="proj-metric">Qualitative Study</span>
+          <span class="proj-metric">Alimosho LGA</span>
+          <span class="proj-metric">LASU 2024</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mini Cards -->
+    <div class="proj-mini-grid">
+      <div class="proj-mini rv d1">
+        <div class="pm-top">
+          <span class="proj-badge badge-live" style="width:fit-content"><span style="width:5px;height:5px;border-radius:50%;background:var(--lav);animation:pulse 2.5s infinite"></span>In Progress</span>
+          <div>
+            <div class="pm-title">Insurance Claims Summary Dashboard</div>
+            <div class="pm-desc-top">Power BI dashboard on 5,000 Nigerian claims — regional patterns, product breakdown, settlement rate.</div>
+          </div>
+        </div>
+        <div class="pm-body">
+          <p>3 charts, 2 slicers. Built on a synthetic Nigerian claims dataset. Simple, clean, and something I can walk through in an interview without hesitation.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+            <div class="pm-tags"><span class="pm-tag">Power BI</span><span class="pm-tag">Excel</span><span class="pm-tag">DAX</span></div>
+            <a href="https://github.com/osilade/Osilade.Portfolio/tree/main/projects/02-insurance-claims-analysis" target="_blank" class="link-lav" style="font-size:.6rem">GitHub →</a>
+          </div>
+        </div>
+      </div>
+      <div class="proj-mini rv d2">
+        <div class="pm-top">
+          <span class="proj-badge badge-live" style="width:fit-content"><span style="width:5px;height:5px;border-radius:50%;background:var(--lav);animation:pulse 2.5s infinite"></span>In Progress</span>
+          <div>
+            <div class="pm-title">Policy Renewal Tracker</div>
+            <div class="pm-desc-top">Excel spreadsheet flagging policies expiring within 30 days using conditional formatting and priority tiers.</div>
+          </div>
+        </div>
+        <div class="pm-body">
+          <p>3,000 policy records. Colour-coded urgency tiers — Critical, Urgent, Due This Month, Active. Pure Excel. Directly relevant to my work at Leadway Assurance.</p>
+          <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px">
+            <div class="pm-tags"><span class="pm-tag">Excel</span><span class="pm-tag">Conditional Formatting</span></div>
+            <a href="https://github.com/osilade/Osilade.Portfolio/tree/main/projects/03-policy-renewal-automation" target="_blank" class="link-lav" style="font-size:.6rem">GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  ⑥ TESTIMONIALS — Do others see it too?
+════════════════════════════════ -->
+<section id="testimonials">
+  <div class="wrap">
+    <div class="rv">
+      <span class="s-label">04 &mdash; Testimonials</span>
+      <h2 class="s-title">What People <em>Say</em></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card rv d1">
+        <span class="test-mark">"</span>
+        <p class="test-quote">Osilade's chess-tech curriculum transformed how our children think about problem-solving. He doesn't just teach tools — he teaches thinking. The way he connects data and strategy is unlike anything we've seen in an instructor this young.</p>
+        <div class="test-name">Mrs. Adebayo</div>
+        <div class="test-role">Parent &middot; Knight Code Student (2024)</div>
+      </div>
+      <div class="test-card rv d2">
+        <span class="test-mark">"</span>
+        <p class="test-quote">His attention to data accuracy in claims tracking saved our team hours every week. Osilade approaches every document and report with the mindset of someone who understands what the data means for the business — not just what it says on paper.</p>
+        <div class="test-name">Operations Lead</div>
+        <div class="test-role">Leadway Assurance Company Limited</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SQL -->
+<section id="sql">
+  <div class="wrap">
+    <div class="sql-intro">
+      <div class="rvl">
+        <span class="s-label">05 &mdash; SQL</span>
+        <h2 class="s-title">Queries<br>I <em>Write</em></h2>
+      </div>
+      <div class="rvr d1">
+        <p class="s-sub">Real queries on Nigerian insurance data. Written in SQLite — straightforward, readable, something I can explain line by line.</p>
+      </div>
+    </div>
+    <div class="sql-grid">
+      <div class="sql-card rv d1">
+        <span class="sql-diff d-beg">Beginner</span>
+        <div class="sql-title">Count Claims by Region</div>
+        <div class="sql-desc">How many claims came from each region? The most basic question in any claims dataset.</div>
+        <div class="sql-code"><span class="kw">SELECT</span> region,<br>&nbsp;&nbsp;<span class="fn">COUNT</span>(*) <span class="kw">AS</span> total_claims<br><span class="kw">FROM</span> claims<br><span class="kw">GROUP BY</span> region<br><span class="kw">ORDER BY</span> total_claims <span class="kw">DESC</span>;</div>
+      </div>
+      <div class="sql-card rv d2">
+        <span class="sql-diff d-beg">Beginner</span>
+        <div class="sql-title">Filter Settled Claims</div>
+        <div class="sql-desc">Pull only successfully settled claims — the foundation of any settlement analysis.</div>
+        <div class="sql-code"><span class="kw">SELECT</span> claim_id, region,<br>&nbsp;&nbsp;product, claim_amount<br><span class="kw">FROM</span> claims<br><span class="kw">WHERE</span> status = <span class="str">'Settled'</span><br><span class="kw">ORDER BY</span> claim_amount <span class="kw">DESC</span>;</div>
+      </div>
+      <div class="sql-card rv d3">
+        <span class="sql-diff d-beg">Beginner</span>
+        <div class="sql-title">Average Claim by Product</div>
+        <div class="sql-desc">Which product line has the highest average payout? Essential for pricing decisions.</div>
+        <div class="sql-code"><span class="kw">SELECT</span> product,<br>&nbsp;&nbsp;<span class="fn">ROUND</span>(<span class="fn">AVG</span>(claim_amount),0)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">AS</span> avg_claim_ngn<br><span class="kw">FROM</span> claims<br><span class="kw">WHERE</span> status = <span class="str">'Settled'</span><br><span class="kw">GROUP BY</span> product;</div>
+      </div>
+      <div class="sql-card rv d1">
+        <span class="sql-diff d-int">Intermediate</span>
+        <div class="sql-title">Settlement Rate by Region</div>
+        <div class="sql-desc">Percentage of claims settled per region using CASE WHEN logic.</div>
+        <div class="sql-code"><span class="kw">SELECT</span> region,<br>&nbsp;&nbsp;<span class="fn">COUNT</span>(*) <span class="kw">AS</span> total,<br>&nbsp;&nbsp;<span class="fn">SUM</span>(<span class="kw">CASE WHEN</span><br>&nbsp;&nbsp;&nbsp;&nbsp;status=<span class="str">'Settled'</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">THEN</span> 1 <span class="kw">ELSE</span> 0 <span class="kw">END</span>)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">AS</span> settled<br><span class="kw">FROM</span> claims <span class="kw">GROUP BY</span> region;</div>
+      </div>
+      <div class="sql-card rv d2">
+        <span class="sql-diff d-int">Intermediate</span>
+        <div class="sql-title">Top 10 Highest Claims</div>
+        <div class="sql-desc">Find the 10 most expensive settled claims. Always the first thing a manager asks for.</div>
+        <div class="sql-code"><span class="kw">SELECT</span> claim_id, region,<br>&nbsp;&nbsp;product, claim_amount<br><span class="kw">FROM</span> claims<br><span class="kw">WHERE</span> status = <span class="str">'Settled'</span><br><span class="kw">ORDER BY</span> claim_amount <span class="kw">DESC</span><br><span class="kw">LIMIT</span> 10;</div>
+      </div>
+      <div class="sql-card rv d3">
+        <span class="sql-diff d-int">Intermediate</span>
+        <div class="sql-title">Monthly Claims Trend</div>
+        <div class="sql-desc">How many claims were filed each month? Reveals seasonality patterns.</div>
+        <div class="sql-code"><span class="kw">SELECT</span> month,<br>&nbsp;&nbsp;<span class="fn">COUNT</span>(*) <span class="kw">AS</span> claims,<br>&nbsp;&nbsp;<span class="fn">SUM</span>(claim_amount)<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">AS</span> total_exposure<br><span class="kw">FROM</span> claims<br><span class="kw">GROUP BY</span> month<br><span class="kw">ORDER BY</span> month;</div>
+      </div>
+    </div>
+    <div class="sql-cta rv">
+      <a href="https://github.com/osilade/Osilade.Portfolio/tree/main/sql-snippets" target="_blank" class="btn-ghost">View All Queries on GitHub &rarr;</a>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="wrap">
+    <div class="rv" style="margin-bottom:20px">
+      <span class="s-label">06 &mdash; Education</span>
+      <h2 class="s-title">Academic <em>Foundation</em></h2>
+    </div>
+    <div class="edu-grid">
+      <div>
+        <div class="edu-item rv d1">
+          <div class="edu-yr">In Progress</div>
+          <div class="edu-deg">Associate, Chartered Insurance Institute of Nigeria</div>
+          <div class="edu-inst">CIIN &middot; Foundation / Intermediate Level</div>
+        </div>
+        <div class="edu-item rv d2">
+          <div class="edu-yr">2024</div>
+          <div class="edu-deg">B.Sc. (Hons.) Sociology &mdash; Second Class Upper (2:1)</div>
+          <div class="edu-inst">Lagos State University (LASU)</div>
+        </div>
+        <div class="edu-item rv d3">
+          <div class="edu-yr">2020</div>
+          <div class="edu-deg">Senior Secondary Certificate Examination</div>
+          <div class="edu-inst">Gbolahan High School</div>
+        </div>
+      </div>
+      <div class="rv d1">
+        <div class="cert-head">Professional Certifications</div>
+        <div class="cert-stack">
+          <div class="cert-row"><span class="cert-n">01</span><div><div class="cert-name">IBM Data Analyst Professional Certificate</div><div class="cert-by">Coursera</div></div></div>
+          <div class="cert-row"><span class="cert-n">02</span><div><div class="cert-name">Professional Data Analysis Program</div><div class="cert-by">ALX Africa</div></div></div>
+          <div class="cert-row"><span class="cert-n">03</span><div><div class="cert-name">Microsoft Power BI</div><div class="cert-by">Coursera</div></div></div>
+          <div class="cert-row"><span class="cert-n">04</span><div><div class="cert-name">Excel Skills for Business</div><div class="cert-by">Coursera</div></div></div>
+          <div class="cert-row"><span class="cert-n">05</span><div><div class="cert-name">Diploma in Risk Management</div><div class="cert-by">Alison</div></div></div>
+          <div class="cert-row"><span class="cert-n">06</span><div><div class="cert-name">Soft Skills &amp; Professional Development</div><div class="cert-by">Jobberman</div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- RESEARCH DEEP DIVE -->
+<section id="shadow">
+  <div class="shadow-glow"></div>
+  <div class="wrap">
+    <div class="rv">
+      <span class="s-label">Flagship Research</span>
+      <h2 class="s-title">The Shadow Insurance<br><em>Economy</em></h2>
+      <p class="s-sub">An original fieldwork study mapping the trust gap between informal savings groups and formal insurance across five markets in Abeokuta South, Nigeria.</p>
+    </div>
+    <div class="shadow-grid">
+      <div>
+        <div class="shadow-copy rv d1">
+          <p>Why do 78% of traders trust ajo with their money while only 5.5% own formal insurance? This study answers that question with primary data, cultural analysis, and policy recommendations for Nigeria's insurance industry.</p>
+        </div>
+        <div class="rv d2">
+          <div class="prog-item">
+            <div class="prog-row"><span>Survey Design</span><strong>Complete</strong></div>
+            <div class="prog-track"><div class="prog-fill" data-w="100"></div></div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-row"><span>Data Collection</span><strong>In Progress</strong></div>
+            <div class="prog-track"><div class="prog-fill" data-w="45"></div></div>
+          </div>
+          <div class="prog-item">
+            <div class="prog-row"><span>Analysis &amp; Dashboard</span><strong>Pending</strong></div>
+            <div class="prog-track"><div class="prog-fill" data-w="10"></div></div>
+          </div>
+        </div>
+        <div class="sh-status rv d3">
+          <div class="sh-dot"></div>
+          <div class="sh-status-text">
+            <span>Expected Completion: Q2 2026</span>
+            <p>Full dataset, interactive dashboard &amp; statistical findings on completion</p>
+          </div>
+        </div>
+      </div>
+      <div class="rv d1">
+        <div class="shadow-card">
+          <div class="sh-card-title">Shadow Insurance Economy of Abeokuta South</div>
+          <div class="sh-card-sub">Primary Research &middot; 2026</div>
+          <div class="sh-metrics">
+            <div class="sh-metric"><span class="sh-mn">200</span><span class="sh-ml">Respondents</span></div>
+            <div class="sh-metric"><span class="sh-mn">5</span><span class="sh-ml">Markets</span></div>
+            <div class="sh-metric"><span class="sh-mn">32</span><span class="sh-ml">Variables</span></div>
+          </div>
+          <p>Mapping the trust gap between informal savings groups and formal insurance across Laderin, Oke Mosan, Onikolobo, OOPL and Tekobo markets — with policy implications for Nigeria's insurance sector.</p>
+          <div class="sh-tags">
+            <span class="sh-tag">Survey Methodology</span>
+            <span class="sh-tag">Sociology of Finance</span>
+            <span class="sh-tag">Python</span>
+            <span class="sh-tag">Statistical Analysis</span>
+            <span class="sh-tag">InsurTech Policy</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ════════════════════════════════
+  ⑦ CONTACT — The Invitation
+════════════════════════════════ -->
+<section id="contact">
+  <div class="contact-glow"></div>
+  <div class="wrap">
+    <div class="contact-inner rv">
+      <span class="s-label">07 &mdash; Contact</span>
+      <h2 class="s-title">Let's<br><em>Connect</em></h2>
+      <p>Whether it's a data analytics opportunity, an insurance conversation, or a collaboration — I'm open to connecting with people who care about the intersection of data, risk, and human behaviour.</p>
+      <div class="contact-btns">
+        <a href="mailto:osiladeisrael16@gmail.com" class="btn-lav">Send Email</a>
+        <a href="https://www.linkedin.com/in/oluwapelumi-i-osilade-772053202/" target="_blank" class="btn-ghost">LinkedIn</a>
+        <a href="https://github.com/osilade/Osilade.Portfolio" target="_blank" class="btn-ghost">GitHub</a>
+      </div>
+      <div class="contact-links">
+        <a href="mailto:osiladeisrael16@gmail.com" class="c-link">
+          <span class="c-link-label">Email</span>
+          <span class="c-link-val">osiladeisrael16@gmail.com</span>
+        </a>
+        <a href="https://www.linkedin.com/in/oluwapelumi-i-osilade-772053202/" target="_blank" class="c-link">
+          <span class="c-link-label">LinkedIn</span>
+          <span class="c-link-val">oluwapelumi-i-osilade</span>
+        </a>
+        <a href="https://github.com/osilade" target="_blank" class="c-link">
+          <span class="c-link-label">GitHub</span>
+          <span class="c-link-val">github.com/osilade</span>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="wrap">
+    <div class="foot-in">
+      <span class="foot-logo">O<em>.</em>Israel</span>
+      <span class="foot-copy">&copy; 2026 Osilade Oluwapelumi Israel &middot; Lagos, Nigeria</span>
+      <span class="foot-tag">Sociology &middot; Analytics &middot; Insurance</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+'use strict';
+
+/* ── CURSOR ── */
+const cur = document.getElementById('cur');
+const ring = document.getElementById('cur-ring');
+let mx=0,my=0,rx=0,ry=0;
+document.addEventListener('mousemove',e=>{mx=e.clientX;my=e.clientY;cur.style.left=mx+'px';cur.style.top=my+'px'});
+(function tick(){rx+=(mx-rx)*.1;ry+=(my-ry)*.1;ring.style.left=rx+'px';ring.style.top=ry+'px';requestAnimationFrame(tick)})();
+document.querySelectorAll('a,button,.exp-card,.proj-featured,.proj-mini,.sql-card,.test-card,.cert-row,.skill-chip').forEach(el=>{
+  el.addEventListener('mouseenter',()=>{cur.classList.add('big');ring.classList.add('big')});
+  el.addEventListener('mouseleave',()=>{cur.classList.remove('big');ring.classList.remove('big')});
+});
+
+/* ── NAV ── */
+const nav=document.getElementById('nav');
+window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>50),{passive:true});
+
+/* ── HAMBURGER ── */
+const ham=document.getElementById('ham');
+const mob=document.getElementById('mob-menu');
+ham.addEventListener('click',()=>{
+  ham.classList.toggle('open');
+  mob.classList.toggle('open');
+  document.body.style.overflow=mob.classList.contains('open')?'hidden':'';
+});
+document.querySelectorAll('.mob-lnk').forEach(a=>{
+  a.addEventListener('click',()=>{
+    ham.classList.remove('open');mob.classList.remove('open');document.body.style.overflow='';
+  });
+});
+
+/* ── SMOOTH SCROLL ── */
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const h=a.getAttribute('href');
+    if(h==='#')return;
+    const t=document.querySelector(h);
+    if(!t)return;
+    e.preventDefault();
+    window.scrollTo({top:t.getBoundingClientRect().top+scrollY-68,behavior:'smooth'});
+  });
+});
+
+/* ── INTERSECTION OBSERVER — REVEAL ── */
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+document.querySelectorAll('.rv,.rvl,.rvr').forEach(el=>io.observe(el));
+
+/* ── CHART BARS ── */
+const chartObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.bar-fill').forEach((bar,i)=>{
+        setTimeout(()=>{ bar.style.width=bar.dataset.w+'%'; },i*120);
+      });
+      chartObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+const chartScene=document.querySelector('.chart-scene');
+if(chartScene) chartObs.observe(chartScene);
+
+/* ── PROGRESS BARS ── */
+const progObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.querySelectorAll('.prog-fill').forEach((bar,i)=>{
+        setTimeout(()=>{ bar.style.width=bar.dataset.w+'%'; },i*200);
+      });
+      progObs.unobserve(e.target);
+    }
+  });
+},{threshold:.3});
+const shadow=document.getElementById('shadow');
+if(shadow) progObs.observe(shadow);
+</script>
+</body>
+</html>
